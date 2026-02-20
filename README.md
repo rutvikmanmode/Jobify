@@ -2,6 +2,7 @@
 
 Jobify is a full-stack hiring platform that connects students and recruiters in one workflow.
 It provides role-based dashboards for job posting, applications, resume analysis, chat, interview scheduling, and analytics.
+depoyed link - https://jobify-nu-flame.vercel.app/?_vercel_share=UXf06VC18mDWhZfB3UP58KA8EWrluXIs
 
 ## Core Features
 
