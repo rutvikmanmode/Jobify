@@ -1,0 +1,2240 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+2 0 obj
+<< /Length 2844 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(Jobify Mock Data Report) Tj
+T*
+(Generated: 2026-02-20T14:44:44.327Z) Tj
+T*
+() Tj
+T*
+(Recruiters: 10) Tj
+T*
+(Students: 10) Tj
+T*
+() Tj
+T*
+(================ RECRUITERS SEED ================) Tj
+T*
+(const recruitersSeed = [) Tj
+T*
+(  {) Tj
+T*
+(    name: "Aisha Verma",) Tj
+T*
+(    email: "aisha.verma@neurostack.ai",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Senior Technical Recruiter",) Tj
+T*
+(      professionalBio: "Hiring backend, platform, and ML engineers for high-growth product teams.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/aishaverma-recruiter",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400",) Tj
+T*
+(      companyName: "NeuroStack AI",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/0f172a/ffffff&text=NS",) Tj
+T*
+(      companyIndustry: "AI Infrastructure",) Tj
+T*
+(      companyWebsite: "https://neurostack.ai",) Tj
+T*
+(      companySize: "201-500",) Tj
+T*
+(      officeLocation: "Bengaluru",) Tj
+T*
+(      workEmail: "aisha.verma@neurostack.ai",) Tj
+T*
+(      workPhoneNumber: "+91-9876543210",) Tj
+T*
+(      preferredCommunicationMethod: "In-app messaging",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 1 day",) Tj
+T*
+(      hiringDomains: ["Backend", "DevOps", "ML Platform"],) Tj
+T*
+(      seniorityLevels: ["Internship", "Entry-level", "Mid-level"],) Tj
+T*
+(      atsId: "ATS-NS-AV-1001",) Tj
+T*
+(      subscriptionTier: "Enterprise",) Tj
+T*
+(      jobPostingCredits: 120,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: true,) Tj
+T*
+(        interviewReminders: true) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["hiring.manager@neurostack.ai", "hr.ops@neurostack.ai"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Rohan Kapoor",) Tj
+T*
+(    email: "rohan.kapoor@neurostack.ai",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Talent Acquisition Manager",) Tj
+T*
+(      professionalBio: "Leading campus and early-career hiring programs across engineering and) Tj
+T*
+(design.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/rohan-kapoor-ta",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400",) Tj
+T*
+(      companyName: "NeuroStack AI",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/0f172a/ffffff&text=NS",) Tj
+T*
+(      companyIndustry: "AI Infrastructure",) Tj
+T*
+(      companyWebsite: "https://neurostack.ai",) Tj
+T*
+(      companySize: "201-500",) Tj
+T*
+(      officeLocation: "Bengaluru",) Tj
+T*
+(      workEmail: "rohan.kapoor@neurostack.ai",) Tj
+T*
+(      workPhoneNumber: "+91-9876500011",) Tj
+T*
+(      preferredCommunicationMethod: "Email",) Tj
+ET
+endstream
+endobj
+3 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 2 0 R >>
+endobj
+4 0 obj
+<< /Length 2870 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      availabilityResponseTime: "Usually responds within 2 days",) Tj
+T*
+(      hiringDomains: ["Frontend", "Fullstack", "Product Design"],) Tj
+T*
+(      seniorityLevels: ["Internship", "Entry-level"],) Tj
+T*
+(      atsId: "ATS-NS-RK-1002",) Tj
+T*
+(      subscriptionTier: "Enterprise",) Tj
+T*
+(      jobPostingCredits: 95,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: true,) Tj
+T*
+(        interviewReminders: false) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["design.lead@neurostack.ai"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Meera Nair",) Tj
+T*
+(    email: "meera.nair@finbyte.com",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Technical Recruiter",) Tj
+T*
+(      professionalBio: "Hiring fintech engineers focused on reliability, security, and scale.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/meera-nair-hiring",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",) Tj
+T*
+(      companyName: "FinByte Labs",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/1f2937/ffffff&text=FB",) Tj
+T*
+(      companyIndustry: "FinTech",) Tj
+T*
+(      companyWebsite: "https://finbyte.com",) Tj
+T*
+(      companySize: "501-1000",) Tj
+T*
+(      officeLocation: "Mumbai",) Tj
+T*
+(      workEmail: "meera.nair@finbyte.com",) Tj
+T*
+(      workPhoneNumber: "+91-9988776655",) Tj
+T*
+(      preferredCommunicationMethod: "LinkedIn",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 3 days",) Tj
+T*
+(      hiringDomains: ["Backend", "Security", "Data Engineering"],) Tj
+T*
+(      seniorityLevels: ["Entry-level", "Mid-level", "Senior"],) Tj
+T*
+(      atsId: "ATS-FB-MN-2001",) Tj
+T*
+(      subscriptionTier: "Premium",) Tj
+T*
+(      jobPostingCredits: 52,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: false,) Tj
+T*
+(        interviewReminders: true) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["cto.office@finbyte.com"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Sanya Iyer",) Tj
+T*
+(    email: "sanya.iyer@neurostack.ai",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Campus Hiring Specialist",) Tj
+T*
+(      professionalBio: "Runs internship and graduate hiring across product and platform teams.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/sanya-iyer-hiring",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400",) Tj
+T*
+(      companyName: "NeuroStack AI",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/0f172a/ffffff&text=NS",) Tj
+T*
+(      companyIndustry: "AI Infrastructure",) Tj
+T*
+(      companyWebsite: "https://neurostack.ai",) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 2705 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      companySize: "201-500",) Tj
+T*
+(      officeLocation: "Bengaluru",) Tj
+T*
+(      workEmail: "sanya.iyer@neurostack.ai",) Tj
+T*
+(      workPhoneNumber: "+91-9876501144",) Tj
+T*
+(      preferredCommunicationMethod: "In-app messaging",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 1 day",) Tj
+T*
+(      hiringDomains: ["Internships", "Frontend", "QA"],) Tj
+T*
+(      seniorityLevels: ["Internship", "Entry-level"],) Tj
+T*
+(      atsId: "ATS-NS-SI-1003",) Tj
+T*
+(      subscriptionTier: "Enterprise",) Tj
+T*
+(      jobPostingCredits: 64,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: true,) Tj
+T*
+(        interviewReminders: true) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["campus.programs@neurostack.ai"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Vikram Sethi",) Tj
+T*
+(    email: "vikram.sethi@finbyte.com",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Engineering Recruiter",) Tj
+T*
+(      professionalBio: "Focuses on backend, data platform, and reliability hiring for payments) Tj
+T*
+(products.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/vikram-sethi-recruiting",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400",) Tj
+T*
+(      companyName: "FinByte Labs",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/1f2937/ffffff&text=FB",) Tj
+T*
+(      companyIndustry: "FinTech",) Tj
+T*
+(      companyWebsite: "https://finbyte.com",) Tj
+T*
+(      companySize: "501-1000",) Tj
+T*
+(      officeLocation: "Mumbai",) Tj
+T*
+(      workEmail: "vikram.sethi@finbyte.com",) Tj
+T*
+(      workPhoneNumber: "+91-9988778801",) Tj
+T*
+(      preferredCommunicationMethod: "Email",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 2 days",) Tj
+T*
+(      hiringDomains: ["Backend", "Data Engineering", "SRE"],) Tj
+T*
+(      seniorityLevels: ["Entry-level", "Mid-level"],) Tj
+T*
+(      atsId: "ATS-FB-VS-2002",) Tj
+T*
+(      subscriptionTier: "Premium",) Tj
+T*
+(      jobPostingCredits: 44,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: true,) Tj
+T*
+(        interviewReminders: false) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["platform.hiring@finbyte.com"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Nidhi Rao",) Tj
+T*
+(    email: "nidhi.rao@finbyte.com",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Product Hiring Partner",) Tj
+T*
+(      professionalBio: "Partners with product and analytics leaders to close high-impact roles.",) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 2883 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      linkedinProfileUrl: "https://linkedin.com/in/nidhi-rao-talent",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400",) Tj
+T*
+(      companyName: "FinByte Labs",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/1f2937/ffffff&text=FB",) Tj
+T*
+(      companyIndustry: "FinTech",) Tj
+T*
+(      companyWebsite: "https://finbyte.com",) Tj
+T*
+(      companySize: "501-1000",) Tj
+T*
+(      officeLocation: "Mumbai",) Tj
+T*
+(      workEmail: "nidhi.rao@finbyte.com",) Tj
+T*
+(      workPhoneNumber: "+91-9988778802",) Tj
+T*
+(      preferredCommunicationMethod: "LinkedIn",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 3 days",) Tj
+T*
+(      hiringDomains: ["Product", "Analytics", "Customer Success"],) Tj
+T*
+(      seniorityLevels: ["Internship", "Entry-level", "Mid-level"],) Tj
+T*
+(      atsId: "ATS-FB-NR-2003",) Tj
+T*
+(      subscriptionTier: "Premium",) Tj
+T*
+(      jobPostingCredits: 37,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: false,) Tj
+T*
+(        interviewReminders: true) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["product.ops@finbyte.com", "analytics.leads@finbyte.com"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Karan Malhotra",) Tj
+T*
+(    email: "karan.malhotra@cloudspring.io",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Senior Talent Partner",) Tj
+T*
+(      professionalBio: "Hiring fullstack and cloud-native engineers for B2B SaaS teams.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/karan-malhotra-talent",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400",) Tj
+T*
+(      companyName: "CloudSpring",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/0b3d5c/ffffff&text=CS",) Tj
+T*
+(      companyIndustry: "SaaS",) Tj
+T*
+(      companyWebsite: "https://cloudspring.io",) Tj
+T*
+(      companySize: "51-200",) Tj
+T*
+(      officeLocation: "Gurugram",) Tj
+T*
+(      workEmail: "karan.malhotra@cloudspring.io",) Tj
+T*
+(      workPhoneNumber: "+91-9898011201",) Tj
+T*
+(      preferredCommunicationMethod: "In-app messaging",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 1 day",) Tj
+T*
+(      hiringDomains: ["Fullstack", "Cloud", "Platform"],) Tj
+T*
+(      seniorityLevels: ["Internship", "Entry-level", "Mid-level"],) Tj
+T*
+(      atsId: "ATS-CS-KM-3001",) Tj
+T*
+(      subscriptionTier: "Enterprise",) Tj
+T*
+(      jobPostingCredits: 73,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: true,) Tj
+T*
+(        interviewReminders: true) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["eng.ops@cloudspring.io"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Elena Dsouza",) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 3014 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(    email: "elena.dsouza@cloudspring.io",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "People Operations Recruiter",) Tj
+T*
+(      professionalBio: "Drives hiring for QA, support engineering, and junior product roles.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/elena-dsouza-peopleops",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1541534401786-2077eed87a72?w=400",) Tj
+T*
+(      companyName: "CloudSpring",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/0b3d5c/ffffff&text=CS",) Tj
+T*
+(      companyIndustry: "SaaS",) Tj
+T*
+(      companyWebsite: "https://cloudspring.io",) Tj
+T*
+(      companySize: "51-200",) Tj
+T*
+(      officeLocation: "Gurugram",) Tj
+T*
+(      workEmail: "elena.dsouza@cloudspring.io",) Tj
+T*
+(      workPhoneNumber: "+91-9898011202",) Tj
+T*
+(      preferredCommunicationMethod: "Email",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 2 days",) Tj
+T*
+(      hiringDomains: ["QA", "Support Engineering", "Product Ops"],) Tj
+T*
+(      seniorityLevels: ["Internship", "Entry-level"],) Tj
+T*
+(      atsId: "ATS-CS-ED-3002",) Tj
+T*
+(      subscriptionTier: "Enterprise",) Tj
+T*
+(      jobPostingCredits: 49,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: true,) Tj
+T*
+(        interviewReminders: true) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["people.team@cloudspring.io"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Omar Khan",) Tj
+T*
+(    email: "omar.khan@brightlanehealth.com",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Technical Recruiter",) Tj
+T*
+(      professionalBio: "Building engineering and data teams for healthcare workflow products.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/omar-khan-hiring",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400",) Tj
+T*
+(      companyName: "BrightLane Health",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/065f46/ffffff&text=BL",) Tj
+T*
+(      companyIndustry: "HealthTech",) Tj
+T*
+(      companyWebsite: "https://brightlanehealth.com",) Tj
+T*
+(      companySize: "201-500",) Tj
+T*
+(      officeLocation: "Pune",) Tj
+T*
+(      workEmail: "omar.khan@brightlanehealth.com",) Tj
+T*
+(      workPhoneNumber: "+91-9810012201",) Tj
+T*
+(      preferredCommunicationMethod: "In-app messaging",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 1 day",) Tj
+T*
+(      hiringDomains: ["Backend", "Data", "Product Analytics"],) Tj
+T*
+(      seniorityLevels: ["Internship", "Entry-level", "Mid-level"],) Tj
+T*
+(      atsId: "ATS-BL-OK-4001",) Tj
+T*
+(      subscriptionTier: "Premium",) Tj
+T*
+(      jobPostingCredits: 42,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: true,) Tj
+T*
+(        interviewReminders: true) Tj
+T*
+(      },) Tj
+ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 2805 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      teamAccess: ["eng-hiring@brightlanehealth.com"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Ritu Bansal",) Tj
+T*
+(    email: "ritu.bansal@brightlanehealth.com",) Tj
+T*
+(    role: "recruiter",) Tj
+T*
+(    recruiterProfile: {) Tj
+T*
+(      jobTitle: "Campus & Early Careers Recruiter",) Tj
+T*
+(      professionalBio: "Leads intern funnels and entry-level onboarding for product and QA teams.",) Tj
+T*
+(      linkedinProfileUrl: "https://linkedin.com/in/ritu-bansal-recruiting",) Tj
+T*
+(      profilePictureUrl: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400",) Tj
+T*
+(      companyName: "BrightLane Health",) Tj
+T*
+(      companyLogoUrl: "https://dummyimage.com/200x200/065f46/ffffff&text=BL",) Tj
+T*
+(      companyIndustry: "HealthTech",) Tj
+T*
+(      companyWebsite: "https://brightlanehealth.com",) Tj
+T*
+(      companySize: "201-500",) Tj
+T*
+(      officeLocation: "Pune",) Tj
+T*
+(      workEmail: "ritu.bansal@brightlanehealth.com",) Tj
+T*
+(      workPhoneNumber: "+91-9810012202",) Tj
+T*
+(      preferredCommunicationMethod: "Email",) Tj
+T*
+(      availabilityResponseTime: "Usually responds within 2 days",) Tj
+T*
+(      hiringDomains: ["QA", "Frontend", "Business Analysis"],) Tj
+T*
+(      seniorityLevels: ["Internship", "Entry-level"],) Tj
+T*
+(      atsId: "ATS-BL-RB-4002",) Tj
+T*
+(      subscriptionTier: "Premium",) Tj
+T*
+(      jobPostingCredits: 33,) Tj
+T*
+(      notificationPreferences: {) Tj
+T*
+(        newApplications: true,) Tj
+T*
+(        messages: false,) Tj
+T*
+(        interviewReminders: true) Tj
+T*
+(      },) Tj
+T*
+(      teamAccess: ["campus@brightlanehealth.com"]) Tj
+T*
+(    }) Tj
+T*
+(  }) Tj
+T*
+(];) Tj
+T*
+() Tj
+T*
+(================ STUDENTS SEED ================) Tj
+T*
+(const studentsSeed = [) Tj
+T*
+(  {) Tj
+T*
+(    name: "Arjun Menon",) Tj
+T*
+(    email: "arjun.menon@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "Final Year CSE Student | Backend & Cloud",) Tj
+T*
+(    bio: "Built distributed systems projects with Node.js, Kafka, and AWS. Looking for backend) Tj
+T*
+(roles.",) Tj
+T*
+(    phone: "+91-9000011111",) Tj
+T*
+(    location: "Hyderabad",) Tj
+T*
+(    university: "IIIT Hyderabad",) Tj
+T*
+(    degree: "B.Tech",) Tj
+T*
+(    specialization: "Computer Science",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/arjun-menon-dev",) Tj
+T*
+(    github: "https://github.com/arjunmenon",) Tj
+T*
+(    portfolio: "https://arjunmenon.dev",) Tj
+T*
+(    resume: "uploads/resume.pdf",) Tj
+T*
+(    resumeText: "Arjun Menon. Backend developer with Node, Express, PostgreSQL, Docker, AWS, Redis,) Tj
+T*
+(microservices. Internship at ScaleGrid building APIs.",) Tj
+T*
+(    skills: ["node", "express", "postgresql", "docker", "aws", "redis", "microservices", "javascript",) Tj
+T*
+("sql"],) Tj
+ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2574 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "ScaleGrid",) Tj
+T*
+(        title: "Backend Intern",) Tj
+T*
+(        location: "Remote",) Tj
+T*
+(        startDate: new Date\("2025-01-10"\),) Tj
+T*
+(        endDate: new Date\("2025-06-10"\),) Tj
+T*
+(        description: "Implemented auth and payment APIs with observability dashboards.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/resume.pdf",) Tj
+T*
+(        resumeText: "Arjun Menon resume v1",) Tj
+T*
+(        extractedSkills: ["node", "express", "postgresql", "aws"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2025-11-15"\)) Tj
+T*
+(      },) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/test.pdf",) Tj
+T*
+(        resumeText: "Arjun Menon resume v2 improved",) Tj
+T*
+(        extractedSkills: ["node", "express", "postgresql", "aws", "redis", "docker"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-01-10"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Arjun Menon",) Tj
+T*
+(      title: "Backend Developer",) Tj
+T*
+(      summary: "Backend engineer focused on scalable APIs",) Tj
+T*
+(      experience: ["Backend Intern at ScaleGrid"],) Tj
+T*
+(      education: ["B.Tech CSE - IIIT Hyderabad"],) Tj
+T*
+(      projects: ["Event-driven job queue system"],) Tj
+T*
+(      certifications: ["AWS Cloud Practitioner"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Priya Shah",) Tj
+T*
+(    email: "priya.shah@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "Frontend Engineer | React + TypeScript",) Tj
+T*
+(    bio: "Passionate about performant interfaces and design systems.",) Tj
+T*
+(    phone: "+91-9000022222",) Tj
+T*
+(    location: "Pune",) Tj
+T*
+(    university: "PES University",) Tj
+T*
+(    degree: "B.Tech",) Tj
+T*
+(    specialization: "Information Science",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/priya-shah-ui",) Tj
+T*
+(    github: "https://github.com/priyashah",) Tj
+T*
+(    portfolio: "https://priyashah.dev",) Tj
+T*
+(    resume: "uploads/test.pdf",) Tj
+T*
+(    resumeText: "Priya Shah. React, TypeScript, Next.js, Tailwind, Redux, GraphQL, Jest, Cypress. UI) Tj
+T*
+(intern at PixelForge.",) Tj
+T*
+(    skills: ["react", "typescript", "next.js", "tailwind", "redux", "graphql", "jest", "cypress",) Tj
+T*
+("javascript"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "PixelForge",) Tj
+T*
+(        title: "Frontend Intern",) Tj
+ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 2676 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(        location: "Bengaluru",) Tj
+T*
+(        startDate: new Date\("2025-02-01"\),) Tj
+T*
+(        endDate: new Date\("2025-07-01"\),) Tj
+T*
+(        description: "Built reusable UI libraries and improved Core Web Vitals by 28%.") Tj
+T*
+(      },) Tj
+T*
+(      {) Tj
+T*
+(        organization: "UXOrbit",) Tj
+T*
+(        title: "UI Engineer Intern",) Tj
+T*
+(        location: "Remote",) Tj
+T*
+(        startDate: new Date\("2024-06-01"\),) Tj
+T*
+(        endDate: new Date\("2024-10-01"\),) Tj
+T*
+(        description: "Implemented design token workflow and component tests.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/test.pdf",) Tj
+T*
+(        resumeText: "Priya Shah resume v1",) Tj
+T*
+(        extractedSkills: ["react", "typescript", "tailwind", "redux"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2025-12-01"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Priya Shah",) Tj
+T*
+(      title: "Frontend Engineer",) Tj
+T*
+(      summary: "Building delightful interfaces",) Tj
+T*
+(      experience: ["Frontend Intern at PixelForge", "UI Engineer Intern at UXOrbit"],) Tj
+T*
+(      education: ["B.Tech IS - PES University"],) Tj
+T*
+(      projects: ["Design system playground", "Realtime dashboard"],) Tj
+T*
+(      certifications: ["Meta Frontend Developer"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Dev Patel",) Tj
+T*
+(    email: "dev.patel@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "Data & ML Engineer",) Tj
+T*
+(    bio: "Hands-on with data pipelines and ML deployment.",) Tj
+T*
+(    phone: "+91-9000033333",) Tj
+T*
+(    location: "Ahmedabad",) Tj
+T*
+(    university: "Nirma University",) Tj
+T*
+(    degree: "B.Tech",) Tj
+T*
+(    specialization: "AI & Data Science",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/dev-patel-ml",) Tj
+T*
+(    github: "https://github.com/devpatel",) Tj
+T*
+(    portfolio: "https://devpatel.ai",) Tj
+T*
+(    resume: "uploads/resume.pdf",) Tj
+T*
+(    resumeText: "Dev Patel. Python, pandas, numpy, scikit-learn, tensorflow, docker, aws, sql,) Tj
+T*
+(airflow.",) Tj
+T*
+(    skills: ["python", "pandas", "numpy", "tensorflow", "docker", "aws", "sql", "machine learning"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "DataWeave Labs",) Tj
+T*
+(        title: "ML Intern",) Tj
+T*
+(        location: "Ahmedabad",) Tj
+T*
+(        startDate: new Date\("2025-03-05"\),) Tj
+T*
+(        endDate: new Date\("2025-08-20"\),) Tj
+T*
+(        description: "Built classification pipelines and model monitoring alerts.") Tj
+ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 16 0 R >>
+endobj
+18 0 obj
+<< /Length 2556 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/resume.pdf",) Tj
+T*
+(        resumeText: "Dev Patel resume v1",) Tj
+T*
+(        extractedSkills: ["python", "pandas", "tensorflow", "sql"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-01-25"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Dev Patel",) Tj
+T*
+(      title: "ML Engineer",) Tj
+T*
+(      summary: "Productionizing ML systems",) Tj
+T*
+(      experience: ["ML Intern at DataWeave Labs"],) Tj
+T*
+(      education: ["B.Tech AI & DS - Nirma University"],) Tj
+T*
+(      projects: ["Fraud detection model", "Feature store prototype"],) Tj
+T*
+(      certifications: ["TensorFlow Developer"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Neha Kulkarni",) Tj
+T*
+(    email: "neha.kulkarni@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "Fullstack Developer | React, Node, PostgreSQL",) Tj
+T*
+(    bio: "Built startup-style products end-to-end and enjoys shipping practical features quickly.",) Tj
+T*
+(    phone: "+91-9000044444",) Tj
+T*
+(    location: "Mumbai",) Tj
+T*
+(    university: "VJTI Mumbai",) Tj
+T*
+(    degree: "B.Tech",) Tj
+T*
+(    specialization: "Information Technology",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/neha-kulkarni-dev",) Tj
+T*
+(    github: "https://github.com/nehakulkarni",) Tj
+T*
+(    portfolio: "https://nehakulkarni.dev",) Tj
+T*
+(    resume: "uploads/resume.pdf",) Tj
+T*
+(    resumeText: "Neha Kulkarni. React, Node.js, PostgreSQL, Redis, Docker, REST APIs, Jest, CI/CD.",) Tj
+T*
+(    skills: ["react", "node", "postgresql", "redis", "docker", "javascript", "jest", "rest api"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "HirePilot",) Tj
+T*
+(        title: "Fullstack Intern",) Tj
+T*
+(        location: "Mumbai",) Tj
+T*
+(        startDate: new Date\("2025-02-15"\),) Tj
+T*
+(        endDate: new Date\("2025-08-15"\),) Tj
+T*
+(        description: "Built applicant tracking flows and analytics pages.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/resume.pdf",) Tj
+T*
+(        resumeText: "Neha Kulkarni resume v1",) Tj
+T*
+(        extractedSkills: ["react", "node", "postgresql", "docker"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-01-05"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Neha Kulkarni",) Tj
+ET
+endstream
+endobj
+19 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 18 0 R >>
+endobj
+20 0 obj
+<< /Length 2762 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      title: "Fullstack Developer",) Tj
+T*
+(      summary: "Pragmatic engineer focused on product velocity and reliability",) Tj
+T*
+(      experience: ["Fullstack Intern at HirePilot"],) Tj
+T*
+(      education: ["B.Tech IT - VJTI Mumbai"],) Tj
+T*
+(      projects: ["ATS dashboard", "Realtime notifications service"],) Tj
+T*
+(      certifications: ["MongoDB Associate Developer"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Rahul Bhat",) Tj
+T*
+(    email: "rahul.bhat@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "Cloud & DevOps Enthusiast",) Tj
+T*
+(    bio: "Interested in infra automation, observability, and secure deployment practices.",) Tj
+T*
+(    phone: "+91-9000055555",) Tj
+T*
+(    location: "Bengaluru",) Tj
+T*
+(    university: "RV College of Engineering",) Tj
+T*
+(    degree: "B.E.",) Tj
+T*
+(    specialization: "Computer Science",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/rahul-bhat-devops",) Tj
+T*
+(    github: "https://github.com/rahulbhat",) Tj
+T*
+(    portfolio: "https://rahulbhat.cloud",) Tj
+T*
+(    resume: "uploads/test.pdf",) Tj
+T*
+(    resumeText: "Rahul Bhat. AWS, Terraform, Docker, Kubernetes, Linux, Prometheus, Grafana, CI/CD.",) Tj
+T*
+(    skills: ["aws", "terraform", "docker", "kubernetes", "linux", "prometheus", "grafana", "ci/cd"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "OpsNest",) Tj
+T*
+(        title: "DevOps Intern",) Tj
+T*
+(        location: "Remote",) Tj
+T*
+(        startDate: new Date\("2025-01-20"\),) Tj
+T*
+(        endDate: new Date\("2025-07-20"\),) Tj
+T*
+(        description: "Automated deployment pipelines and reduced release failures.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/test.pdf",) Tj
+T*
+(        resumeText: "Rahul Bhat resume v1",) Tj
+T*
+(        extractedSkills: ["aws", "terraform", "docker", "kubernetes"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-01-14"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Rahul Bhat",) Tj
+T*
+(      title: "DevOps Engineer",) Tj
+T*
+(      summary: "Automation-first engineer who cares about dependable delivery",) Tj
+T*
+(      experience: ["DevOps Intern at OpsNest"],) Tj
+T*
+(      education: ["B.E. CSE - RV College of Engineering"],) Tj
+T*
+(      projects: ["Kubernetes cost dashboard", "GitOps deployment template"],) Tj
+T*
+(      certifications: ["AWS Solutions Architect - Associate"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Sana Qureshi",) Tj
+T*
+(    email: "sana.qureshi@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "UI Engineer | Design Systems + Accessibility",) Tj
+ET
+endstream
+endobj
+21 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 20 0 R >>
+endobj
+22 0 obj
+<< /Length 2770 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(    bio: "Builds polished interfaces and accessible component systems for web apps.",) Tj
+T*
+(    phone: "+91-9000066666",) Tj
+T*
+(    location: "Delhi",) Tj
+T*
+(    university: "NSUT",) Tj
+T*
+(    degree: "B.Tech",) Tj
+T*
+(    specialization: "Computer Engineering",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/sana-qureshi-ui",) Tj
+T*
+(    github: "https://github.com/sanaqureshi",) Tj
+T*
+(    portfolio: "https://sanaui.dev",) Tj
+T*
+(    resume: "uploads/resume.pdf",) Tj
+T*
+(    resumeText: "Sana Qureshi. React, Next.js, TypeScript, Storybook, Tailwind, accessibility, testing) Tj
+T*
+(library.",) Tj
+T*
+(    skills: ["react", "next.js", "typescript", "storybook", "tailwind", "accessibility",) Tj
+T*
+("testing-library"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "StudioGrid",) Tj
+T*
+(        title: "UI Engineer Intern",) Tj
+T*
+(        location: "Delhi",) Tj
+T*
+(        startDate: new Date\("2025-03-01"\),) Tj
+T*
+(        endDate: new Date\("2025-08-30"\),) Tj
+T*
+(        description: "Created reusable components used across 4 product squads.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/resume.pdf",) Tj
+T*
+(        resumeText: "Sana Qureshi resume v1",) Tj
+T*
+(        extractedSkills: ["react", "typescript", "tailwind", "storybook"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-01-18"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Sana Qureshi",) Tj
+T*
+(      title: "UI Engineer",) Tj
+T*
+(      summary: "Frontend developer with design-system and accessibility focus",) Tj
+T*
+(      experience: ["UI Engineer Intern at StudioGrid"],) Tj
+T*
+(      education: ["B.Tech CE - NSUT"],) Tj
+T*
+(      projects: ["Accessible component library", "Portfolio CMS"],) Tj
+T*
+(      certifications: ["Google UX Design Certificate"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Karthik Reddy",) Tj
+T*
+(    email: "karthik.reddy@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "Data Engineer | Python + Airflow + SQL",) Tj
+T*
+(    bio: "Enjoys building ETL pipelines and data quality systems for analytics teams.",) Tj
+T*
+(    phone: "+91-9000077777",) Tj
+T*
+(    location: "Chennai",) Tj
+T*
+(    university: "SRM Institute of Science and Technology",) Tj
+T*
+(    degree: "B.Tech",) Tj
+T*
+(    specialization: "Data Science",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/karthik-reddy-data",) Tj
+T*
+(    github: "https://github.com/karthikreddy",) Tj
+T*
+(    portfolio: "https://karthikdata.dev",) Tj
+T*
+(    resume: "uploads/test.pdf",) Tj
+T*
+(    resumeText: "Karthik Reddy. Python, SQL, Airflow, dbt, AWS Glue, S3, Spark.",) Tj
+ET
+endstream
+endobj
+23 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 22 0 R >>
+endobj
+24 0 obj
+<< /Length 2666 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(    skills: ["python", "sql", "airflow", "dbt", "aws", "s3", "spark", "data engineering"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "QuantBridge",) Tj
+T*
+(        title: "Data Intern",) Tj
+T*
+(        location: "Chennai",) Tj
+T*
+(        startDate: new Date\("2025-02-10"\),) Tj
+T*
+(        endDate: new Date\("2025-08-10"\),) Tj
+T*
+(        description: "Built incremental ETL models and pipeline alerting.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/test.pdf",) Tj
+T*
+(        resumeText: "Karthik Reddy resume v1",) Tj
+T*
+(        extractedSkills: ["python", "sql", "airflow", "spark"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-01-30"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Karthik Reddy",) Tj
+T*
+(      title: "Data Engineer",) Tj
+T*
+(      summary: "Data pipeline builder with strong SQL and workflow automation skills",) Tj
+T*
+(      experience: ["Data Intern at QuantBridge"],) Tj
+T*
+(      education: ["B.Tech Data Science - SRM IST"],) Tj
+T*
+(      projects: ["Realtime metrics pipeline", "Airflow health monitor"],) Tj
+T*
+(      certifications: ["Databricks Lakehouse Fundamentals"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Isha Singh",) Tj
+T*
+(    email: "isha.singh@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "Product Analyst | SQL, Python, BI",) Tj
+T*
+(    bio: "Translates product questions into data-backed decisions and clear dashboards.",) Tj
+T*
+(    phone: "+91-9000088888",) Tj
+T*
+(    location: "Noida",) Tj
+T*
+(    university: "Amity University",) Tj
+T*
+(    degree: "B.Tech",) Tj
+T*
+(    specialization: "Computer Science",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/isha-singh-analytics",) Tj
+T*
+(    github: "https://github.com/ishasingh",) Tj
+T*
+(    portfolio: "https://ishasingh.me",) Tj
+T*
+(    resume: "uploads/resume.pdf",) Tj
+T*
+(    resumeText: "Isha Singh. SQL, Python, Tableau, Power BI, A/B testing, product analytics,) Tj
+T*
+(statistics.",) Tj
+T*
+(    skills: ["sql", "python", "tableau", "power bi", "a/b testing", "product analytics",) Tj
+T*
+("statistics"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "GrowthMetric",) Tj
+T*
+(        title: "Product Analytics Intern",) Tj
+T*
+(        location: "Noida",) Tj
+T*
+(        startDate: new Date\("2025-01-05"\),) Tj
+T*
+(        endDate: new Date\("2025-06-28"\),) Tj
+T*
+(        description: "Supported funnel analysis and experiment readouts for app growth.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+ET
+endstream
+endobj
+25 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 24 0 R >>
+endobj
+26 0 obj
+<< /Length 2694 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/resume.pdf",) Tj
+T*
+(        resumeText: "Isha Singh resume v1",) Tj
+T*
+(        extractedSkills: ["sql", "python", "tableau", "a/b testing"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-01-21"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Isha Singh",) Tj
+T*
+(      title: "Product Analyst",) Tj
+T*
+(      summary: "Analytical storyteller with product sense and experimentation experience",) Tj
+T*
+(      experience: ["Product Analytics Intern at GrowthMetric"],) Tj
+T*
+(      education: ["B.Tech CSE - Amity University"],) Tj
+T*
+(      projects: ["Retention cohort dashboard", "Experiment scorecard tool"],) Tj
+T*
+(      certifications: ["Google Data Analytics Professional Certificate"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Aman Joshi",) Tj
+T*
+(    email: "aman.joshi@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "Security Engineering Student",) Tj
+T*
+(    bio: "Focused on secure coding, vulnerability testing, and incident automation.",) Tj
+T*
+(    phone: "+91-9000099999",) Tj
+T*
+(    location: "Jaipur",) Tj
+T*
+(    university: "MNIT Jaipur",) Tj
+T*
+(    degree: "B.Tech",) Tj
+T*
+(    specialization: "Cyber Security",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/aman-joshi-security",) Tj
+T*
+(    github: "https://github.com/amanjoshi",) Tj
+T*
+(    portfolio: "https://amansec.dev",) Tj
+T*
+(    resume: "uploads/test.pdf",) Tj
+T*
+(    resumeText: "Aman Joshi. Linux, Python, OWASP, Burp Suite, SIEM, threat detection, AWS security.",) Tj
+T*
+(    skills: ["linux", "python", "security", "owasp", "siem", "aws", "incident response"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "SecureLoop",) Tj
+T*
+(        title: "Security Intern",) Tj
+T*
+(        location: "Remote",) Tj
+T*
+(        startDate: new Date\("2025-03-10"\),) Tj
+T*
+(        endDate: new Date\("2025-08-25"\),) Tj
+T*
+(        description: "Automated security checks and wrote incident response playbooks.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/test.pdf",) Tj
+T*
+(        resumeText: "Aman Joshi resume v1",) Tj
+T*
+(        extractedSkills: ["linux", "python", "security", "aws"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-02-02"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Aman Joshi",) Tj
+T*
+(      title: "Security Analyst",) Tj
+T*
+(      summary: "Security-focused engineer with practical automation experience",) Tj
+ET
+endstream
+endobj
+27 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 26 0 R >>
+endobj
+28 0 obj
+<< /Length 2674 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      experience: ["Security Intern at SecureLoop"],) Tj
+T*
+(      education: ["B.Tech Cyber Security - MNIT Jaipur"],) Tj
+T*
+(      projects: ["SIEM alert triage automation", "Web vuln scanner plugin"],) Tj
+T*
+(      certifications: ["CompTIA Security+"]) Tj
+T*
+(    }) Tj
+T*
+(  },) Tj
+T*
+(  {) Tj
+T*
+(    name: "Tanya Ghosh",) Tj
+T*
+(    email: "tanya.ghosh@studentmail.com",) Tj
+T*
+(    role: "student",) Tj
+T*
+(    headline: "QA Automation Engineer | Cypress + Playwright",) Tj
+T*
+(    bio: "Strong at test strategy, regression automation, and improving release confidence.",) Tj
+T*
+(    phone: "+91-9000011234",) Tj
+T*
+(    location: "Kolkata",) Tj
+T*
+(    university: "Jadavpur University",) Tj
+T*
+(    degree: "B.E.",) Tj
+T*
+(    specialization: "Software Engineering",) Tj
+T*
+(    linkedin: "https://linkedin.com/in/tanya-ghosh-qa",) Tj
+T*
+(    github: "https://github.com/tanyaghosh",) Tj
+T*
+(    portfolio: "https://tanyaghosh.dev",) Tj
+T*
+(    resume: "uploads/resume.pdf",) Tj
+T*
+(    resumeText: "Tanya Ghosh. Cypress, Playwright, Selenium, API testing, Postman, CI pipelines,) Tj
+T*
+(JavaScript.",) Tj
+T*
+(    skills: ["cypress", "playwright", "selenium", "api testing", "postman", "ci/cd", "javascript"],) Tj
+T*
+(    internships: [) Tj
+T*
+(      {) Tj
+T*
+(        organization: "TestForge",) Tj
+T*
+(        title: "QA Automation Intern",) Tj
+T*
+(        location: "Kolkata",) Tj
+T*
+(        startDate: new Date\("2025-02-01"\),) Tj
+T*
+(        endDate: new Date\("2025-07-31"\),) Tj
+T*
+(        description: "Developed end-to-end test suites that cut regression time by 40%.") Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeVersions: [) Tj
+T*
+(      {) Tj
+T*
+(        resumePath: "uploads/resume.pdf",) Tj
+T*
+(        resumeText: "Tanya Ghosh resume v1",) Tj
+T*
+(        extractedSkills: ["cypress", "playwright", "postman", "javascript"],) Tj
+T*
+(        source: "upload",) Tj
+T*
+(        createdAt: new Date\("2026-01-27"\)) Tj
+T*
+(      }) Tj
+T*
+(    ],) Tj
+T*
+(    resumeBuilder: {) Tj
+T*
+(      fullName: "Tanya Ghosh",) Tj
+T*
+(      title: "QA Automation Engineer",) Tj
+T*
+(      summary: "Quality-focused engineer who scales testing through automation",) Tj
+T*
+(      experience: ["QA Automation Intern at TestForge"],) Tj
+T*
+(      education: ["B.E. Software Engineering - Jadavpur University"],) Tj
+T*
+(      projects: ["Cross-browser E2E harness", "API regression monitor"],) Tj
+T*
+(      certifications: ["ISTQB Foundation Level"]) Tj
+T*
+(    }) Tj
+T*
+(  }) Tj
+T*
+(];) Tj
+T*
+() Tj
+T*
+(================ JOBS SEED ================) Tj
+T*
+(const jobsSeed = [) Tj
+T*
+(    {) Tj
+T*
+(      title: "Backend Engineer Intern",) Tj
+ET
+endstream
+endobj
+29 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 28 0 R >>
+endobj
+30 0 obj
+<< /Length 2659 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      company: "NeuroStack AI",) Tj
+T*
+(      description: "Build internal APIs, queues, and observability tooling.",) Tj
+T*
+(      requiredSkills: ["node", "express", "postgresql", "redis", "docker", "aws"],) Tj
+T*
+(      status: "open",) Tj
+T*
+(      expiryDate: new Date\("2026-06-30"\),) Tj
+T*
+(      postedBy: aisha._id,) Tj
+T*
+(      recruiters: [aisha._id, rohan._id]) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      title: "Frontend Engineer Intern",) Tj
+T*
+(      company: "NeuroStack AI",) Tj
+T*
+(      description: "Develop user-facing dashboard with React and TypeScript.",) Tj
+T*
+(      requiredSkills: ["react", "typescript", "tailwind", "redux", "graphql"],) Tj
+T*
+(      status: "open",) Tj
+T*
+(      expiryDate: new Date\("2026-05-15"\),) Tj
+T*
+(      postedBy: rohan._id,) Tj
+T*
+(      recruiters: [rohan._id, aisha._id]) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      title: "Data Engineer",) Tj
+T*
+(      company: "FinByte Labs",) Tj
+T*
+(      description: "Design ETL workflows and warehousing for analytics workloads.",) Tj
+T*
+(      requiredSkills: ["python", "sql", "aws", "docker", "airflow"],) Tj
+T*
+(      status: "open",) Tj
+T*
+(      expiryDate: new Date\("2026-07-01"\),) Tj
+T*
+(      postedBy: meera._id,) Tj
+T*
+(      recruiters: [meera._id]) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      title: "Security Analyst",) Tj
+T*
+(      company: "FinByte Labs",) Tj
+T*
+(      description: "Support appsec and incident response automation.",) Tj
+T*
+(      requiredSkills: ["python", "linux", "aws", "security"],) Tj
+T*
+(      status: "draft",) Tj
+T*
+(      expiryDate: new Date\("2026-08-01"\),) Tj
+T*
+(      postedBy: meera._id,) Tj
+T*
+(      recruiters: [meera._id]) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      title: "Fullstack Developer Intern",) Tj
+T*
+(      company: "CloudSpring",) Tj
+T*
+(      description: "Build customer-facing workflows with React, Node.js, and PostgreSQL.",) Tj
+T*
+(      requiredSkills: ["react", "node", "postgresql", "docker", "javascript"],) Tj
+T*
+(      status: "open",) Tj
+T*
+(      expiryDate: new Date\("2026-06-20"\),) Tj
+T*
+(      postedBy: karan._id,) Tj
+T*
+(      recruiters: [karan._id]) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      title: "Product Analyst Intern",) Tj
+T*
+(      company: "BrightLane Health",) Tj
+T*
+(      description: "Analyze product funnels and build dashboards to guide roadmap decisions.",) Tj
+T*
+(      requiredSkills: ["sql", "python", "tableau", "statistics", "communication"],) Tj
+T*
+(      status: "open",) Tj
+T*
+(      expiryDate: new Date\("2026-06-05"\),) Tj
+T*
+(      postedBy: omar._id,) Tj
+T*
+(      recruiters: [omar._id]) Tj
+T*
+(    }) Tj
+T*
+(  ];) Tj
+ET
+endstream
+endobj
+31 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 30 0 R >>
+endobj
+32 0 obj
+<< /Length 2209 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+() Tj
+T*
+(================ APPLICATIONS SEED ================) Tj
+T*
+(const appSeed = [) Tj
+T*
+(    {) Tj
+T*
+(      student: arjun._id,) Tj
+T*
+(      job: backendIntern._id,) Tj
+T*
+(      status: "Interview",) Tj
+T*
+(      score: 86,) Tj
+T*
+(      shortlisted: true,) Tj
+T*
+(      internalNotes: "Strong backend depth. Move to final round.",) Tj
+T*
+(      createdAt: new Date\("2026-02-01"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-10"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: priya._id,) Tj
+T*
+(      job: frontendIntern._id,) Tj
+T*
+(      status: "Screening",) Tj
+T*
+(      score: 82,) Tj
+T*
+(      shortlisted: true,) Tj
+T*
+(      internalNotes: "Great UI ownership. Need stronger testing examples.",) Tj
+T*
+(      createdAt: new Date\("2026-02-03"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-08"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: dev._id,) Tj
+T*
+(      job: dataEngineer._id,) Tj
+T*
+(      status: "Offered",) Tj
+T*
+(      score: 91,) Tj
+T*
+(      shortlisted: true,) Tj
+T*
+(      internalNotes: "Best fit for data pipelines. Offer released.",) Tj
+T*
+(      createdAt: new Date\("2026-01-20"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-12"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: arjun._id,) Tj
+T*
+(      job: dataEngineer._id,) Tj
+T*
+(      status: "Rejected",) Tj
+T*
+(      score: 58,) Tj
+T*
+(      shortlisted: false,) Tj
+T*
+(      internalNotes: "Good backend, but limited data platform experience.",) Tj
+T*
+(      createdAt: new Date\("2026-01-25"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-04"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: neha._id,) Tj
+T*
+(      job: fullstackIntern._id,) Tj
+T*
+(      status: "Interview",) Tj
+T*
+(      score: 88,) Tj
+T*
+(      shortlisted: true,) Tj
+T*
+(      internalNotes: "Strong fullstack project depth and clean API design choices.",) Tj
+T*
+(      createdAt: new Date\("2026-02-02"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-11"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: rahul._id,) Tj
+T*
+(      job: backendIntern._id,) Tj
+T*
+(      status: "Screening",) Tj
+T*
+(      score: 77,) Tj
+T*
+(      shortlisted: true,) Tj
+ET
+endstream
+endobj
+33 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 32 0 R >>
+endobj
+34 0 obj
+<< /Length 2218 >>
+stream
+BT
+/F1 9 Tf
+40 743 Td
+(      internalNotes: "Good infra fundamentals; evaluate backend coding in next round.",) Tj
+T*
+(      createdAt: new Date\("2026-02-04"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-10"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: sana._id,) Tj
+T*
+(      job: frontendIntern._id,) Tj
+T*
+(      status: "Interview",) Tj
+T*
+(      score: 85,) Tj
+T*
+(      shortlisted: true,) Tj
+T*
+(      internalNotes: "Excellent accessibility focus and component architecture.",) Tj
+T*
+(      createdAt: new Date\("2026-02-05"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-12"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: karthik._id,) Tj
+T*
+(      job: dataEngineer._id,) Tj
+T*
+(      status: "Screening",) Tj
+T*
+(      score: 79,) Tj
+T*
+(      shortlisted: true,) Tj
+T*
+(      internalNotes: "Good SQL and orchestration exposure. Verify ownership depth.",) Tj
+T*
+(      createdAt: new Date\("2026-02-01"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-09"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: isha._id,) Tj
+T*
+(      job: productAnalystIntern._id,) Tj
+T*
+(      status: "Offered",) Tj
+T*
+(      score: 90,) Tj
+T*
+(      shortlisted: true,) Tj
+T*
+(      internalNotes: "Clear communication and strong experiment design skills.",) Tj
+T*
+(      createdAt: new Date\("2026-01-28"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-13"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: aman._id,) Tj
+T*
+(      job: backendIntern._id,) Tj
+T*
+(      status: "Applied",) Tj
+T*
+(      score: 69,) Tj
+T*
+(      shortlisted: false,) Tj
+T*
+(      internalNotes: "Security profile is strong; backend fit still under review.",) Tj
+T*
+(      createdAt: new Date\("2026-02-07"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-07"\)) Tj
+T*
+(    },) Tj
+T*
+(    {) Tj
+T*
+(      student: tanya._id,) Tj
+T*
+(      job: frontendIntern._id,) Tj
+T*
+(      status: "Screening",) Tj
+T*
+(      score: 74,) Tj
+T*
+(      shortlisted: true,) Tj
+T*
+(      internalNotes: "Good QA automation background for frontend quality ownership.",) Tj
+T*
+(      createdAt: new Date\("2026-02-06"\),) Tj
+T*
+(      statusUpdatedAt: new Date\("2026-02-11"\)) Tj
+T*
+(    }) Tj
+T*
+(  ];) Tj
+ET
+endstream
+endobj
+35 0 obj
+<< /Type /Page /Parent 36 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R >> >> /Contents 34 0 R >>
+endobj
+36 0 obj
+<< /Type /Pages /Kids [ 3 0 R 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R 19 0 R 21 0 R 23 0 R 25 0 R 27 0 R 29 0 R 31 0 R 33 0 R 35 0 R ] /Count 17 >>
+endobj
+37 0 obj
+<< /Type /Catalog /Pages 36 0 R >>
+endobj
+xref
+0 38
+0000000000 65535 f 
+0000000009 00000 n 
+0000000077 00000 n 
+0000002973 00000 n 
+0000003100 00000 n 
+0000006022 00000 n 
+0000006149 00000 n 
+0000008906 00000 n 
+0000009033 00000 n 
+0000011968 00000 n 
+0000012095 00000 n 
+0000015162 00000 n 
+0000015291 00000 n 
+0000018149 00000 n 
+0000018278 00000 n 
+0000020905 00000 n 
+0000021034 00000 n 
+0000023763 00000 n 
+0000023892 00000 n 
+0000026501 00000 n 
+0000026630 00000 n 
+0000029445 00000 n 
+0000029574 00000 n 
+0000032397 00000 n 
+0000032526 00000 n 
+0000035245 00000 n 
+0000035374 00000 n 
+0000038121 00000 n 
+0000038250 00000 n 
+0000040977 00000 n 
+0000041106 00000 n 
+0000043818 00000 n 
+0000043947 00000 n 
+0000046209 00000 n 
+0000046338 00000 n 
+0000048609 00000 n 
+0000048738 00000 n 
+0000048908 00000 n 
+trailer
+<< /Size 38 /Root 37 0 R >>
+startxref
+48959
+%%EOF
