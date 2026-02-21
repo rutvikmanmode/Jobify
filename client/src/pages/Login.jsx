@@ -12,9 +12,11 @@ export default function Login() {
     e.preventDefault();
 
     try {
+      const cleanIdentifier = identifier.trim();
       const res = await API.post("/auth/login", {
-        email: identifier.includes("@") ? identifier.trim() : "",
-        phone: identifier.includes("@") ? "" : identifier.trim(),
+        identifier: cleanIdentifier,
+        email: cleanIdentifier.includes("@") ? cleanIdentifier : "",
+        phone: cleanIdentifier.includes("@") ? "" : cleanIdentifier,
         password
       });
 
@@ -27,8 +29,8 @@ export default function Login() {
       } else {
         navigate("/recruiter");
       }
-    } catch {
-      alert("Invalid credentials");
+    } catch (error) {
+      alert(error?.response?.data?.message || "Login failed");
     }
   };
 

@@ -113,15 +113,34 @@ exports.register = async (req, res) => {
 // LOGIN
 exports.login = async (req, res) => {
   try {
-    const { email, phone, password } = req.body;
+    const { email, phone, password, identifier } = req.body;
 
-    const normalizedEmail = email?.trim().toLowerCase() || undefined;
-    const normalizedPhone = phone?.trim() || undefined;
+    let loginEmail = email;
+    let loginPhone = phone;
+
+    const normalizedIdentifier = identifier?.trim();
+    if (normalizedIdentifier && !loginEmail && !loginPhone) {
+      if (normalizedIdentifier.includes("@")) {
+        loginEmail = normalizedIdentifier;
+      } else {
+        loginPhone = normalizedIdentifier;
+      }
+    }
+
+    const normalizedEmail = loginEmail?.trim().toLowerCase() || undefined;
+    const normalizedPhone = loginPhone?.trim() || undefined;
 
     if (!normalizedEmail && !normalizedPhone) {
       return res.status(400).json({
         success: false,
         message: "Email or phone number is required"
+      });
+    }
+
+    if (!password) {
+      return res.status(400).json({
+        success: false,
+        message: "Password is required"
       });
     }
 
