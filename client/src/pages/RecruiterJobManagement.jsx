@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import API from "../api/axios";
 import RecruiterLayout from "../components/RecruiterLayout";
 import { getResumeStreamUrl, toServerAssetUrl } from "../utils/apiBase";
@@ -231,7 +232,7 @@ export default function RecruiterJobManagement() {
               <p className="text-sm">Shortlisted: {app.shortlisted ? "Yes" : "No"}</p>
               <div className="flex flex-wrap gap-2 mt-2">
                 <button onClick={() => app.student && setSelectedStudent(app.student)} disabled={!app.student} className="btn-primary">View Profile</button>
-                {app.student?._id && <a href={`/messages?userId=${app.student._id}&jobId=${selectedJob}`} className="btn-info">Message</a>}
+                {app.student?._id && <Link to={`/messages?userId=${app.student._id}&jobId=${selectedJob}`} className="btn-info">Message</Link>}
                 <button onClick={() => updateApplicationReview(app._id, { shortlisted: !app.shortlisted })} className="btn-info">{app.shortlisted ? "Unshortlist" : "Shortlist"}</button>
                 <button onClick={() => updateApplicationStatus(app._id, "Rejected")} className="btn-danger">Reject</button>
                 <select onChange={(e) => updateApplicationStatus(app._id, e.target.value)} value={app.status} className="input max-w-[180px]">
@@ -306,7 +307,7 @@ export default function RecruiterJobManagement() {
             </div>
             <p className="font-semibold mb-1">Bio</p>
             <p className="text-slate-700 mb-3">{selectedStudent.bio || "No bio added"}</p>
-            {selectedStudent._id && <a href={`/messages?userId=${selectedStudent._id}&jobId=${selectedJob || ""}`} className="btn-info mb-3">Message Candidate</a>}
+            {selectedStudent._id && <Link to={`/messages?userId=${selectedStudent._id}&jobId=${selectedJob || ""}`} className="btn-info mb-3">Message Candidate</Link>}
             <div className="mb-4">
               <p className="font-semibold mb-2">Skills</p>
               {selectedStudent.skills?.length ? selectedStudent.skills.map((skill, idx) => (
@@ -325,9 +326,9 @@ export default function RecruiterJobManagement() {
 
       {selectedJobData?.company && (
         <div className="mt-6">
-          <a href={`/company/${encodeURIComponent(selectedJobData.company)}`} className="btn-secondary">
+          <Link to={`/company/${encodeURIComponent(selectedJobData.company)}`} className="btn-secondary">
             Open Company Profile Page
-          </a>
+          </Link>
         </div>
       )}
     </RecruiterLayout>

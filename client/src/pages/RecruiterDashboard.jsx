@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import API from "../api/axios";
 import RecruiterLayout from "../components/RecruiterLayout";
 import {
@@ -533,7 +534,7 @@ export default function RecruiterDashboard() {
       <RevealOnScroll delay={80}>
         <div className="page-header flex items-center justify-between gap-3 mb-4">
         <h2 className="section-title text-lg">Posted Jobs</h2>
-        <a href="/recruiter/jobs" className="btn-primary">Manage Jobs</a>
+        <Link to="/recruiter/jobs" className="btn-primary">Manage Jobs</Link>
       </div>
       </RevealOnScroll>
 
@@ -547,7 +548,7 @@ export default function RecruiterDashboard() {
             <p className="text-sm text-slate-500 mt-1">Status: <span className="font-medium">{job.status}</span></p>
             <p className="text-sm text-slate-500">Expiry: {job.expiryDate ? new Date(job.expiryDate).toLocaleDateString() : "No expiry"}</p>
             <div className="mt-4">
-              <a href="/recruiter/jobs" className="btn-secondary">Open Job Manager</a>
+              <Link to="/recruiter/jobs" className="btn-secondary">Open Job Manager</Link>
             </div>
           </div>
         ))}
