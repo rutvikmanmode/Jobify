@@ -5,10 +5,36 @@ const path = require("path");
 require("dotenv").config();
 
 const app = express();
+const normalizeOrigin = (value = "") => String(value).trim().replace(/\/+$/, "");
 const allowedOrigins = (process.env.CLIENT_URL || "")
   .split(",")
-  .map((value) => value.trim())
+  .map((value) => normalizeOrigin(value))
   .filter(Boolean);
+const corsDebug = String(process.env.CORS_DEBUG || "").toLowerCase() === "true";
+
+const defaultAllowedPatterns = [
+  /^https?:\/\/localhost(?::\d+)?$/i,
+  /^https:\/\/[a-z0-9-]+\.vercel\.app$/i
+];
+
+const isAllowedOrigin = (origin = "") => {
+  const normalizedOrigin = normalizeOrigin(origin);
+  if (!normalizedOrigin) return true;
+  if (allowedOrigins.length === 0) return true;
+  if (allowedOrigins.includes("*")) return true;
+
+  if (allowedOrigins.includes(normalizedOrigin)) return true;
+  if (defaultAllowedPatterns.some((pattern) => pattern.test(normalizedOrigin))) return true;
+
+  // Allow Vercel preview/prod domains when configured as wildcard in CLIENT_URL.
+  // Example: CLIENT_URL=https://*.vercel.app
+  const hasVercelWildcard = allowedOrigins.includes("https://*.vercel.app");
+  if (hasVercelWildcard && /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(normalizedOrigin)) {
+    return true;
+  }
+
+  return false;
+};
 
 // Connect Database
 connectDB();
@@ -18,10 +44,15 @@ app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
-      if (allowedOrigins.length === 0) return callback(null, true);
-      if (allowedOrigins.includes(origin)) return callback(null, true);
+      const allowed = isAllowedOrigin(origin);
+      if (corsDebug) {
+        console.log("[CORS]", { origin, allowed, allowedOrigins });
+      }
+      if (allowed) return callback(null, true);
       return callback(new Error("CORS origin not allowed"));
-    }
+    },
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
   })
 );
 app.use(express.json());

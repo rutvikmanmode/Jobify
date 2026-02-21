@@ -283,6 +283,12 @@ NODE_ENV=production
 CLIENT_URL=https://your-vercel-domain.vercel.app
 ```
 
+For Vercel preview links, you can also allow all Vercel subdomains:
+
+```env
+CLIENT_URL=https://your-vercel-domain.vercel.app,https://*.vercel.app
+```
+
 After deploy, copy your Render backend URL:
 
 ```text
