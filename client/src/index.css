@@ -273,6 +273,57 @@
     border: 1px solid hsl(var(--secondary) / 0.3);
     @apply inline-flex items-center px-3 py-1 text-xs font-semibold;
   }
+
+  /* Uiverse-inspired side menu button style */
+  .side-menu-ripple-btn {
+    outline: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 200px;
+    width: 100%;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding: 14px 18px;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    overflow: hidden;
+    cursor: pointer;
+    background: #40b3a2;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .side-menu-ripple-btn:hover {
+    opacity: 0.95;
+  }
+
+  .side-menu-ripple-btn:active {
+    transform: scale(0.99);
+  }
+
+  .side-menu-ripple-btn .animation {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    animation: side-menu-ripple 0.6s linear infinite;
+    flex: 0 0 auto;
+  }
+
+  .side-menu-ripple-btn.is-active {
+    background: #2f9a8b;
+  }
+
+  .side-menu-ripple-btn-compact {
+    min-width: auto;
+    width: auto;
+    padding: 10px 12px;
+    gap: 10px;
+  }
 }
 
 body.compact-view .page-wrap {
@@ -365,6 +416,24 @@ body.font-large {
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes side-menu-ripple {
+  0% {
+    box-shadow:
+      0 0 0 0 rgba(255, 255, 255, 0.1),
+      0 0 0 20px rgba(255, 255, 255, 0.1),
+      0 0 0 40px rgba(255, 255, 255, 0.1),
+      0 0 0 60px rgba(255, 255, 255, 0.1);
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 20px rgba(255, 255, 255, 0.1),
+      0 0 0 40px rgba(255, 255, 255, 0.1),
+      0 0 0 60px rgba(255, 255, 255, 0.1),
+      0 0 0 80px rgba(255, 255, 255, 0);
+  }
 }
 
 .animate-float {

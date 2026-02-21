@@ -143,8 +143,9 @@ export default function StudentLayout({ title, subtitle, children }) {
             >
               <div className="flex items-center justify-between mb-4">
                 <h2 className="section-title text-lg">Side Menu</h2>
-                <button type="button" className="btn-secondary !px-3 !py-2" onClick={() => setMenuOpen(false)}>
-                  X
+                <button type="button" className="side-menu-ripple-btn side-menu-ripple-btn-compact" onClick={() => setMenuOpen(false)}>
+                  <span>X</span>
+                  <span className="animation" aria-hidden="true" />
                 </button>
               </div>
 
@@ -156,9 +157,10 @@ export default function StudentLayout({ title, subtitle, children }) {
                       key={item.key}
                       to={item.to}
                       onClick={() => setMenuOpen(false)}
-                      className={isActive ? "btn-primary text-center" : "btn-secondary text-center"}
+                      className={`side-menu-ripple-btn ${isActive ? "is-active" : ""}`}
                     >
-                      {item.label}
+                      <span>{item.label}</span>
+                      <span className="animation" aria-hidden="true" />
                     </Link>
                   );
                 })}
