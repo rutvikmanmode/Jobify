@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { animated, useSpring } from "@react-spring/web";
 
 import Login from "./pages/Login";
@@ -100,6 +100,14 @@ function AnimatedAppRoutes() {
           }
         />
         <Route
+          path="/recruiter/jobs/*"
+          element={
+            <ProtectedRoute role="recruiter">
+              <RecruiterJobManagement />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/recruiter/profile"
           element={
             <ProtectedRoute role="recruiter">
@@ -147,6 +155,7 @@ function AnimatedAppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </animated.div>
   );
