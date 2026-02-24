@@ -11,10 +11,29 @@ const ensureApiSuffix = (value = "") => {
 export const API_BASE_URL = ensureApiSuffix(import.meta.env.VITE_API_BASE_URL);
 export const SERVER_BASE_URL = API_BASE_URL.replace(/\/api$/, "");
 
+const normalizeAssetPath = (assetPath = "") => {
+  const raw = String(assetPath || "").trim().replace(/\\/g, "/");
+  if (!raw) return "";
+  if (/^https?:\/\//i.test(raw)) return raw;
+
+  const uploadsMarkerIndex = raw.toLowerCase().lastIndexOf("/uploads/");
+  if (uploadsMarkerIndex >= 0) {
+    return raw.slice(uploadsMarkerIndex + 1);
+  }
+
+  const bareUploadsIndex = raw.toLowerCase().indexOf("uploads/");
+  if (bareUploadsIndex >= 0) {
+    return raw.slice(bareUploadsIndex);
+  }
+
+  return raw.replace(/^\/+/, "");
+};
+
 export const toServerAssetUrl = (assetPath = "") => {
-  if (!assetPath) return "";
-  if (/^https?:\/\//i.test(assetPath)) return assetPath;
-  return `${SERVER_BASE_URL}/${String(assetPath).replace(/^\/+/, "")}`;
+  const normalized = normalizeAssetPath(assetPath);
+  if (!normalized) return "";
+  if (/^https?:\/\//i.test(normalized)) return normalized;
+  return `${SERVER_BASE_URL}/${encodeURI(normalized)}`;
 };
 
 export const getResumeStreamUrl = (filename = "") => {

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Post = require("../models/post");
+const { normalizeUploadPath } = require("../utils/pathUtils");
 
 const populatePost = (query) => (
   query
@@ -27,8 +28,8 @@ const withUserFlags = (post, userId) => {
 exports.createPost = async (req, res, next) => {
   try {
     const text = String(req.body?.text || "").trim();
-    const imageUrlFromBody = String(req.body?.imageUrl || req.body?.image || "").trim();
-    const imageUrlFromUpload = req.file ? `uploads/${req.file.filename}` : "";
+    const imageUrlFromBody = normalizeUploadPath(String(req.body?.imageUrl || req.body?.image || "").trim());
+    const imageUrlFromUpload = req.file ? normalizeUploadPath(`uploads/${req.file.filename}`) : "";
     const imageUrl = imageUrlFromUpload || imageUrlFromBody;
     const repostOf = String(req.body?.repostOf || "").trim();
 

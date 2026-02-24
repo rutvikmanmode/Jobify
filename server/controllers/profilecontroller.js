@@ -2,6 +2,7 @@ const User = require("../models/user");
 const Job = require("../models/job");
 const path = require("path");
 const fs = require("fs");
+const { normalizeUploadPath } = require("../utils/pathUtils");
 
 const publicEmailDomains = [
   "gmail.com",
@@ -71,23 +72,28 @@ exports.uploadPhoto = async (req, res) => {
 
     // Optional: delete old photo if exists
     const user = await User.findById(req.user.id);
-    if (user.profilePhoto) {
+    if (user.profilePhoto && !/^https?:\/\//i.test(user.profilePhoto)) {
       try {
-        const oldPhotoPath = path.isAbsolute(user.profilePhoto)
-          ? user.profilePhoto
-          : path.join(__dirname, "..", user.profilePhoto);
-        fs.unlinkSync(oldPhotoPath);
+        const normalizedPhotoPath = normalizeUploadPath(user.profilePhoto);
+        const oldPhotoPath = path.isAbsolute(normalizedPhotoPath)
+          ? normalizedPhotoPath
+          : path.join(__dirname, "..", normalizedPhotoPath);
+        if (fs.existsSync(oldPhotoPath)) {
+          fs.unlinkSync(oldPhotoPath);
+        }
       } catch {}
     }
 
+    const photoPath = normalizeUploadPath(`uploads/${req.file.filename}`);
+
     await User.findByIdAndUpdate(req.user.id, {
-      profilePhoto: `uploads/${req.file.filename}`
+      profilePhoto: photoPath
     });
 
     res.json({
       success: true,
       message: "Photo uploaded successfully",
-      photo: `uploads/${req.file.filename}`
+      photo: photoPath
     });
 
   } catch (error) {
