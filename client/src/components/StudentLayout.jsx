@@ -16,7 +16,7 @@ const menuItems = [
   { key: "account", label: "Account Settings", to: "/account-settings" }
 ];
 
-export default function StudentLayout({ title, subtitle, children }) {
+export default function StudentLayout({ title, subtitle, headerAction = null, children }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profile, setProfile] = useState(null);
   const [unreadCount, setUnreadCount] = useState(0);
@@ -95,6 +95,7 @@ export default function StudentLayout({ title, subtitle, children }) {
           </div>
 
           <div className="flex items-center gap-2">
+            {headerAction}
             <Link
               to="/messages"
               className="relative flex items-center justify-center w-11 h-11 rounded-xl border border-slate-200 bg-white hover:border-slate-300 text-slate-700"

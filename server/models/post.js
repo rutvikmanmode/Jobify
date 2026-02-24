@@ -17,6 +17,40 @@ const postSchema = new mongoose.Schema(
       default: 0,
       min: 0
     },
+    likedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+      }
+    ],
+    comments: [
+      {
+        author: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+          required: true
+        },
+        text: {
+          type: String,
+          required: true,
+          trim: true
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now
+        }
+      }
+    ],
+    repostOf: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Post",
+      default: null
+    },
+    repostCount: {
+      type: Number,
+      default: 0,
+      min: 0
+    },
     author: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

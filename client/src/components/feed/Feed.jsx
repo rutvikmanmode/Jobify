@@ -1,6 +1,6 @@
 import PostCard from "./PostCard";
 
-export default function Feed({ posts, currentUserId, onLike, onDelete }) {
+export default function Feed({ posts, currentUserId, onLike, onDelete, onComment, onRepost }) {
   if (posts.length === 0) {
     return (
       <div className="panel panel-pad">
@@ -15,9 +15,11 @@ export default function Feed({ posts, currentUserId, onLike, onDelete }) {
         <PostCard
           key={post._id}
           post={post}
-          canDelete={post.author?._id === currentUserId}
+          currentUserId={currentUserId}
           onLike={onLike}
           onDelete={onDelete}
+          onComment={onComment}
+          onRepost={onRepost}
         />
       ))}
     </div>

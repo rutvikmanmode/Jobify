@@ -263,7 +263,9 @@ News Feed APIs:
 
 - `POST /api/posts` - create a post (`text` required, `imageUrl` optional)
 - `GET /api/posts` - fetch all posts (newest first)
-- `PUT /api/posts/:id/like` - increment likes
+- `PUT /api/posts/:id/like` - toggle like/unlike
+- `POST /api/posts/:id/comments` - add comment
+- `POST /api/posts/:id/repost` - repost with optional text
 - `DELETE /api/posts/:id` - delete a post
 
 Frontend flow updates:

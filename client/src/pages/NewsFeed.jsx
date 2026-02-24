@@ -7,6 +7,7 @@ import RecruiterLayout from "../components/RecruiterLayout";
 
 export default function NewsFeed() {
   const [posts, setPosts] = useState([]);
+  const [showComposer, setShowComposer] = useState(false);
   const role = localStorage.getItem("role");
   const currentUserId = localStorage.getItem("userId");
 
@@ -37,6 +38,7 @@ export default function NewsFeed() {
         res = await API.post("/posts", { text: payload.text });
       }
       setPosts((prev) => [res.data.data, ...prev]);
+      setShowComposer(false);
       return true;
     } catch (error) {
       alert(error?.response?.data?.message || "Failed to create post");
@@ -44,22 +46,59 @@ export default function NewsFeed() {
     }
   };
 
+  const replacePostInState = (updatedPost) => {
+    if (!updatedPost?._id) return;
+    setPosts((prev) => prev.map((item) => (item._id === updatedPost._id ? updatedPost : item)));
+  };
+
   const handleLikePost = async (postId) => {
-    setPosts((prev) => prev.map((post) => (
-      post._id === postId ? { ...post, likes: Number(post.likes || 0) + 1 } : post
-    )));
+    let previousPost = null;
+    setPosts((prev) => prev.map((post) => {
+      if (post._id !== postId) return post;
+      previousPost = post;
+      const liked = Boolean(post.userHasLiked);
+      return {
+        ...post,
+        userHasLiked: !liked,
+        likes: liked ? Math.max(0, Number(post.likes || 0) - 1) : Number(post.likes || 0) + 1
+      };
+    }));
 
     try {
       const res = await API.put(`/posts/${postId}/like`);
-      const updated = res.data?.data;
-      if (updated?._id) {
-        setPosts((prev) => prev.map((post) => (post._id === updated._id ? updated : post)));
-      }
+      replacePostInState(res.data?.data);
     } catch {
-      setPosts((prev) => prev.map((post) => (
-        post._id === postId ? { ...post, likes: Math.max(0, Number(post.likes || 0) - 1) } : post
-      )));
+      if (previousPost) replacePostInState(previousPost);
       alert("Failed to like post");
+    }
+  };
+
+  const handleCommentPost = async (postId, text) => {
+    try {
+      const res = await API.post(`/posts/${postId}/comments`, { text });
+      replacePostInState(res.data?.data);
+      return true;
+    } catch (error) {
+      alert(error?.response?.data?.message || "Failed to add comment");
+      return false;
+    }
+  };
+
+  const handleRepost = async (postId, text) => {
+    try {
+      const res = await API.post(`/posts/${postId}/repost`, { text });
+      const repost = res.data?.data;
+      const originalPost = res.data?.originalPost;
+      if (repost) {
+        setPosts((prev) => [repost, ...prev]);
+      }
+      if (originalPost) {
+        replacePostInState(originalPost);
+      }
+      return true;
+    } catch (error) {
+      alert(error?.response?.data?.message || "Failed to repost");
+      return false;
     }
   };
 
@@ -77,19 +116,38 @@ export default function NewsFeed() {
 
   const content = (
     <div className="grid gap-4">
-      <CreatePost onCreate={handleCreatePost} />
+      {showComposer ? (
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
+          <div className="panel w-full max-w-2xl panel-pad">
+            <CreatePost onCreate={handleCreatePost} onCancel={() => setShowComposer(false)} />
+          </div>
+        </div>
+      ) : null}
+
       <Feed
         posts={posts}
         currentUserId={currentUserId}
         onLike={handleLikePost}
         onDelete={handleDeletePost}
+        onComment={handleCommentPost}
+        onRepost={handleRepost}
       />
     </div>
   );
 
+  const headerAction = (
+    <button type="button" className="btn-primary" onClick={() => setShowComposer(true)}>
+      + Create Post
+    </button>
+  );
+
   if (role === "student") {
     return (
-      <StudentLayout title="Jobify Feed" subtitle="News and updates from your hiring network.">
+      <StudentLayout
+        title="Jobify Feed"
+        subtitle="News and updates from your hiring network."
+        headerAction={headerAction}
+      >
         {content}
       </StudentLayout>
     );
@@ -97,7 +155,11 @@ export default function NewsFeed() {
 
   if (role === "recruiter") {
     return (
-      <RecruiterLayout title="Jobify Feed" subtitle="News and updates from your hiring network.">
+      <RecruiterLayout
+        title="Jobify Feed"
+        subtitle="News and updates from your hiring network."
+        headerAction={headerAction}
+      >
         {content}
       </RecruiterLayout>
     );

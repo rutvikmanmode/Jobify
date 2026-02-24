@@ -274,6 +274,25 @@
     @apply inline-flex items-center px-3 py-1 text-xs font-semibold;
   }
 
+  .linkedin-post-card {
+    border-radius: 0.9rem;
+    overflow: hidden;
+  }
+
+  .feed-action-btn {
+    @apply flex-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition;
+    border: 1px solid transparent;
+  }
+
+  .feed-action-btn:hover {
+    @apply bg-slate-100 text-slate-800;
+  }
+
+  .feed-action-btn.is-active {
+    color: hsl(var(--secondary));
+    background: hsl(var(--secondary) / 0.12);
+  }
+
   /* Uiverse-inspired side menu button style */
   .side-menu-ripple-btn {
     outline: 0;

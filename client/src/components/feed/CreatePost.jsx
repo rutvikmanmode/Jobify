@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CreatePost({ onCreate }) {
+export default function CreatePost({ onCreate, onCancel }) {
   const [text, setText] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -30,7 +30,7 @@ export default function CreatePost({ onCreate }) {
       <h2 className="text-lg font-semibold text-slate-900 mb-3">Create Post</h2>
       <textarea
         className="input min-h-[110px]"
-        placeholder="Share an update with your network..."
+        placeholder="What do you want to talk about?"
         value={text}
         onChange={(e) => setText(e.target.value)}
         required
@@ -41,7 +41,12 @@ export default function CreatePost({ onCreate }) {
         className="input mt-3"
         onChange={(e) => setImageFile(e.target.files?.[0] || null)}
       />
-      <div className="mt-3">
+      <div className="mt-3 flex items-center justify-end gap-2">
+        {onCancel ? (
+          <button type="button" className="btn-secondary" onClick={onCancel} disabled={submitting}>
+            Cancel
+          </button>
+        ) : null}
         <button type="submit" className="btn-primary" disabled={submitting}>
           {submitting ? "Posting..." : "Post"}
         </button>
