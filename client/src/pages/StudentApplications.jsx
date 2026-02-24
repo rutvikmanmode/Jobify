@@ -18,6 +18,18 @@ export default function StudentApplications() {
     }
   };
 
+  const unapply = async (jobId) => {
+    const ok = window.confirm("Withdraw your application for this job?");
+    if (!ok) return;
+
+    try {
+      await API.delete(`/applications/${jobId}`);
+      fetchApplications();
+    } catch (error) {
+      alert(error.response?.data?.message || "Failed to withdraw application");
+    }
+  };
+
   return (
     <StudentLayout title="My Applications" subtitle="Track all applications and statuses.">
       <div className="panel panel-pad">
@@ -29,6 +41,11 @@ export default function StudentApplications() {
             <p className="text-emerald-700 font-bold">Score: {app.score}%</p>
             <p className="text-sm text-indigo-700">Status: {app.status || "Applied"}</p>
             <p className="text-xs text-slate-500">Updated: {app.statusUpdatedAt ? new Date(app.statusUpdatedAt).toLocaleString() : "-"}</p>
+            {app.job?._id && (
+              <button onClick={() => unapply(app.job._id)} className="btn-danger mt-2">
+                Unapply
+              </button>
+            )}
           </div>
         ))}
       </div>

@@ -5,6 +5,7 @@ const { protect, authorize } = require("../middleware/authmiddleware");
 
 const {
   applyJob,
+  unapplyJob,
   previewApplicationScore,
   autoApplyMatchingJobs,
   getMyApplications,
@@ -63,6 +64,13 @@ router.post(
   protect,
   authorize("student"),
   applyJob
+);
+
+router.delete(
+  "/:jobId",
+  protect,
+  authorize("student"),
+  unapplyJob
 );
 
 module.exports = router;

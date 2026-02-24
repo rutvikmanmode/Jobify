@@ -99,6 +99,25 @@ exports.applyJob = async (req, res) => {
   }
 };
 
+exports.unapplyJob = async (req, res) => {
+  try {
+    const { jobId } = req.params;
+
+    const removed = await Application.findOneAndDelete({
+      student: req.user.id,
+      job: jobId
+    });
+
+    if (!removed) {
+      return res.status(404).json({ success: false, message: "Application not found" });
+    }
+
+    return res.json({ success: true, message: "Application withdrawn successfully" });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: "Failed to withdraw application" });
+  }
+};
+
 exports.autoApplyMatchingJobs = async (req, res) => {
   try {
     const threshold = Math.max(0, Math.min(100, Number(req.body.threshold ?? 70)));

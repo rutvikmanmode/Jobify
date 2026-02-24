@@ -93,6 +93,19 @@ export default function StudentDashboard() {
     }
   };
 
+  const unapplyFromJob = async (jobId) => {
+    const ok = window.confirm("Withdraw your application for this job?");
+    if (!ok) return;
+
+    try {
+      await API.delete(`/applications/${jobId}`);
+      alert("Application withdrawn successfully");
+      fetchApplications();
+    } catch (error) {
+      alert(error.response?.data?.message || "Failed to withdraw application");
+    }
+  };
+
   const openRecruiterProfile = (job) => {
     if (!job.postedBy) return;
     setSelectedRecruiter(job.postedBy);
@@ -158,7 +171,7 @@ export default function StudentDashboard() {
       </RevealOnScroll>
 
       {selectedRecruiter && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-[70]">
           <div className="panel w-full max-w-3xl panel-pad max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-start mb-4">
               <h2 className="section-title text-xl">Recruiter Profile</h2>
@@ -248,13 +261,15 @@ export default function StudentDashboard() {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              <button
-                disabled={hasApplied(selectedJob._id)}
-                onClick={() => applyToJob(selectedJob._id)}
-                className={hasApplied(selectedJob._id) ? "btn-secondary opacity-60 cursor-not-allowed" : "btn-success"}
-              >
-                {hasApplied(selectedJob._id) ? "Applied" : "Apply"}
-              </button>
+              {hasApplied(selectedJob._id) ? (
+                <button onClick={() => unapplyFromJob(selectedJob._id)} className="btn-danger">
+                  Unapply
+                </button>
+              ) : (
+                <button onClick={() => applyToJob(selectedJob._id)} className="btn-success">
+                  Apply
+                </button>
+              )}
               <button onClick={() => previewBeforeApply(selectedJob._id)} className="btn-warning">Preview Score</button>
               <button onClick={() => openRecruiterProfile(selectedJob)} className="btn-primary">View Recruiter</button>
               {selectedJob.postedBy?._id && (
