@@ -275,12 +275,16 @@
   }
 
   .linkedin-post-card {
-    border-radius: 0.9rem;
+    border-radius: 0.8rem;
     overflow: hidden;
   }
 
+  .feed-composer {
+    @apply p-3 md:p-4;
+  }
+
   .feed-action-btn {
-    @apply flex-1 rounded-lg px-3 py-2 text-sm font-semibold text-slate-600 transition;
+    @apply flex-1 rounded-lg px-2.5 py-1.5 text-sm font-medium text-slate-600 transition;
     border: 1px solid transparent;
   }
 

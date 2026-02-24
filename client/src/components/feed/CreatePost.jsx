@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CreatePost({ onCreate, onCancel }) {
+export default function CreatePost({ onCreate, onCancel, className = "" }) {
   const [text, setText] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
@@ -26,10 +26,10 @@ export default function CreatePost({ onCreate, onCancel }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="panel panel-pad">
+    <form onSubmit={handleSubmit} className={`panel feed-composer ${className}`.trim()}>
       <h2 className="text-lg font-semibold text-slate-900 mb-3">Create Post</h2>
       <textarea
-        className="input min-h-[110px]"
+        className="input min-h-[84px]"
         placeholder="What do you want to talk about?"
         value={text}
         onChange={(e) => setText(e.target.value)}

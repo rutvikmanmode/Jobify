@@ -141,34 +141,6 @@ export default function StudentDashboard() {
               )}
               <div className="flex flex-wrap gap-2 mt-4">
                 <button
-                  disabled={hasApplied(job._id)}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    applyToJob(job._id);
-                  }}
-                  className={hasApplied(job._id) ? "btn-secondary opacity-60 cursor-not-allowed" : "btn-success"}
-                >
-                  {hasApplied(job._id) ? "Applied" : "Apply"}
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    previewBeforeApply(job._id);
-                  }}
-                  className="btn-warning"
-                >
-                  Preview Score
-                </button>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    openRecruiterProfile(job);
-                  }}
-                  className="btn-primary"
-                >
-                  View Recruiter
-                </button>
-                <button
                   onClick={(e) => {
                     e.stopPropagation();
                     setSelectedJob(job);
@@ -177,15 +149,6 @@ export default function StudentDashboard() {
                 >
                   View Details
                 </button>
-                {job.postedBy?._id && (
-                  <a
-                    href={`/messages?userId=${job.postedBy._id}&jobId=${job._id}`}
-                    onClick={(e) => e.stopPropagation()}
-                    className="btn-info"
-                  >
-                    Message Recruiter
-                  </a>
-                )}
               </div>
                 </div>
               </RevealOnScroll>

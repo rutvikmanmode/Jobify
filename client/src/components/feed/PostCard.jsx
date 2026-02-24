@@ -54,11 +54,11 @@ export default function PostCard({
         ) : null}
 
         <div className="flex items-start justify-between gap-3">
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-2.5">
             <img
               src={post.author?.profilePhoto ? toServerAssetUrl(post.author.profilePhoto) : fallbackAvatar}
               alt={post.author?.name || "User"}
-              className="w-12 h-12 rounded-full object-cover border border-slate-200"
+              className="w-10 h-10 rounded-full object-cover border border-slate-200"
             />
             <div>
               <p className="font-semibold text-slate-900">{post.author?.name || "User"}</p>
@@ -102,9 +102,9 @@ export default function PostCard({
           </div>
         ) : null}
 
-        <div className="mt-4 flex items-center justify-between text-xs text-slate-500">
+        <div className="mt-3 flex items-center justify-between text-xs text-slate-500">
           <span>{post.likes || 0} likes</span>
-          <span>{post.commentsCount || comments.length} comments · {post.repostCount || 0} reposts</span>
+          <span>{post.commentsCount || comments.length} comments | {post.repostCount || 0} reposts</span>
         </div>
       </div>
 
