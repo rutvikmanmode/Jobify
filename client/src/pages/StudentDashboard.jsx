@@ -104,8 +104,8 @@ export default function StudentDashboard() {
 
   return (
     <StudentLayout
-      title="Student News Feed"
-      subtitle="Opportunities That Move You Forward."
+      title="Available Jobs"
+      subtitle="Opportunities that match your profile."
     >
       <RevealOnScroll>
         <div className="mb-6">

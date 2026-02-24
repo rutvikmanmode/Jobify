@@ -37,6 +37,7 @@ depoyed link - https://jobify-nu-flame.vercel.app/?_vercel_share=UXf06VC18mDWhZf
 - Login activity tracking.
 - Account settings (password change, email update verification, logout all devices, account deletion).
 - File uploads for resumes, profile photos, and chat attachments.
+- News Feed system (create post, like post, delete post, newest-first feed).
 
 ## Tech Stack
 
@@ -256,6 +257,20 @@ Main backend route groups:
 - `/api/applications`
 - `/api/analytics`
 - `/api/messages`
+- `/api/posts`
+
+News Feed APIs:
+
+- `POST /api/posts` - create a post (`text` required, `imageUrl` optional)
+- `GET /api/posts` - fetch all posts (newest first)
+- `PUT /api/posts/:id/like` - increment likes
+- `DELETE /api/posts/:id` - delete a post
+
+Frontend flow updates:
+
+- After login, users land on `/feed`.
+- Student available jobs page: `/student/jobs/available`
+- Recruiter analytics page: `/recruiter/analytics`
 
 ## Notes
 

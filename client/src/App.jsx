@@ -3,12 +3,12 @@ import { animated, useSpring } from "@react-spring/web";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import StudentDashboard from "./pages/StudentDashboard";
+import AvailableJobs from "./pages/AvailableJobs";
 import StudentResumeCenter from "./pages/StudentResumeCenter";
 import StudentResumeHistory from "./pages/StudentResumeHistory";
 import StudentRecommendedJobs from "./pages/StudentRecommendedJobs";
 import StudentApplications from "./pages/StudentApplications";
-import RecruiterDashboard from "./pages/RecruiterDashboard";
+import RecruiterAnalytics from "./pages/RecruiterAnalytics";
 import RecruiterJobManagement from "./pages/RecruiterJobManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Profile from "./pages/Profile";
@@ -20,6 +20,7 @@ import ApplicationSettings from "./pages/ApplicationSettings";
 import LandingPage from "./pages/LandingPage";
 import CornerLogo from "./components/CornerLogo";
 import InfoPage from "./pages/InfoPage";
+import NewsFeed from "./pages/NewsFeed";
 
 function AnimatedAppRoutes() {
   const location = useLocation();
@@ -39,13 +40,29 @@ function AnimatedAppRoutes() {
         <Route path="/info" element={<InfoPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/feed"
+          element={
+            <ProtectedRoute>
+              <NewsFeed />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Student Route */}
         <Route
           path="/student"
           element={
             <ProtectedRoute role="student">
-              <StudentDashboard />
+              <AvailableJobs />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/student/jobs/available"
+          element={
+            <ProtectedRoute role="student">
+              <AvailableJobs />
             </ProtectedRoute>
           }
         />
@@ -87,7 +104,15 @@ function AnimatedAppRoutes() {
           path="/recruiter"
           element={
             <ProtectedRoute role="recruiter">
-              <RecruiterDashboard />
+              <RecruiterAnalytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/recruiter/analytics"
+          element={
+            <ProtectedRoute role="recruiter">
+              <RecruiterAnalytics />
             </ProtectedRoute>
           }
         />

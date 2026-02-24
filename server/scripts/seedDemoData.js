@@ -5,6 +5,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const Job = require("../models/job");
 const Application = require("../models/application");
+const Post = require("../models/post");
 
 const DEMO_PASSWORD = "Password@123";
 
@@ -1137,12 +1138,42 @@ async function upsertApplications(students, jobs) {
   }
 }
 
+function buildPostsForUser(user, index) {
+  const roleLabel = user.role === "recruiter" ? "Hiring" : "Learning";
+  const topics = [
+    "Sharing progress update and key takeaways this week.",
+    "Open to collaborations and meaningful conversations.",
+    "Focused on consistent growth and practical outcomes."
+  ];
+
+  return topics.map((topic, postIndex) => ({
+    text: `${roleLabel} update ${postIndex + 1}: ${user.name} - ${topic}`,
+    imageUrl: "",
+    likes: Math.max(0, (index + 1) * (postIndex + 2)),
+    author: user._id
+  }));
+}
+
+async function upsertPosts(recruiters, students) {
+  const users = [...recruiters, ...students];
+  const postsSeed = users.flatMap((user, index) => buildPostsForUser(user, index));
+
+  for (const post of postsSeed) {
+    await Post.findOneAndUpdate(
+      { author: post.author, text: post.text },
+      { $set: post },
+      { upsert: true, new: true, setDefaultsOnInsert: true }
+    );
+  }
+}
+
 async function optionalClear() {
   const shouldClear = process.argv.includes("--reset");
   if (!shouldClear) return;
 
   await Application.deleteMany({});
   await Job.deleteMany({});
+  await Post.deleteMany({});
   await User.deleteMany({
     email: {
       $in: [
@@ -1163,6 +1194,7 @@ async function optionalClear() {
     const students = await upsertStudents(passwordHash);
     const jobs = await upsertJobs(recruiters);
     await upsertApplications(students, jobs);
+    await upsertPosts(recruiters, students);
 
     console.log("Demo data seeded successfully");
     console.log("Login password for all demo users:", DEMO_PASSWORD);

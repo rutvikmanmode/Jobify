@@ -5,7 +5,8 @@ import API from "../api/axios";
 import { toServerAssetUrl } from "../utils/apiBase";
 
 const menuItems = [
-  { key: "feed", label: "Available Jobs Feed", to: "/student" },
+  { key: "newsFeed", label: "News Feed", to: "/feed" },
+  { key: "availableJobs", label: "Available Jobs", to: "/student/jobs/available" },
   { key: "resumeCenter", label: "Resume Center", to: "/student/resume-center" },
   { key: "resumeHistory", label: "Resume History", to: "/student/resume-history" },
   { key: "recommended", label: "Recommended Jobs", to: "/student/recommended" },

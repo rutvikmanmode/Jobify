@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const path = require("path");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 require("dotenv").config();
 
 const app = express();
@@ -71,16 +72,16 @@ app.use("/api/jobs", require("./routes/jobroutes"));
 app.use("/api/applications", require("./routes/applicationroutes"));
 app.use("/api/analytics", require("./routes/analyticsroutes"));
 app.use("/api/messages", require("./routes/messageroutes"));
+app.use("/api/posts", require("./routes/postroutes"));
 
 // Root Route
 app.get("/", (req, res) => {
   res.send("API running...");
 });
 
-// 404 Handler
-app.use((req, res) => {
-  res.status(404).json({ msg: "Route not found" });
-});
+// Error Handlers
+app.use(notFound);
+app.use(errorHandler);
 
 // Start Server
 const PORT = process.env.PORT || 5000;

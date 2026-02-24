@@ -24,11 +24,7 @@ export default function Login() {
       localStorage.setItem("role", res.data.user.role);
       localStorage.setItem("userId", res.data.user.id || res.data.user._id || "");
 
-      if (res.data.user.role === "student") {
-        navigate("/student");
-      } else {
-        navigate("/recruiter");
-      }
+      navigate("/feed");
     } catch (error) {
       alert(error?.response?.data?.message || "Login failed");
     }
