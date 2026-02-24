@@ -17,6 +17,8 @@ export default function PostCard({
   const [repostText, setRepostText] = useState("");
   const [commenting, setCommenting] = useState(false);
   const [reposting, setReposting] = useState(false);
+  const [imageLoadFailed, setImageLoadFailed] = useState(false);
+  const [repostImageLoadFailed, setRepostImageLoadFailed] = useState(false);
 
   const canDelete = post.author?._id === currentUserId;
   const comments = post.comments || [];
@@ -59,6 +61,10 @@ export default function PostCard({
               src={post.author?.profilePhoto ? toServerAssetUrl(post.author.profilePhoto) : fallbackAvatar}
               alt={post.author?.name || "User"}
               className="w-10 h-10 rounded-full object-cover border border-slate-200"
+              onError={(e) => {
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = fallbackAvatar;
+              }}
             />
             <div>
               <p className="font-semibold text-slate-900">{post.author?.name || "User"}</p>
@@ -73,11 +79,12 @@ export default function PostCard({
         </div>
 
         {post.text ? <p className="text-slate-800 mt-3 whitespace-pre-wrap">{post.text}</p> : null}
-        {post.imageUrl ? (
+        {post.imageUrl && !imageLoadFailed ? (
           <img
             src={toServerAssetUrl(post.imageUrl)}
             alt="Post"
             className="mt-3 w-full max-h-[28rem] object-cover rounded-xl border border-slate-200 bg-white"
+            onError={() => setImageLoadFailed(true)}
           />
         ) : null}
 
@@ -92,11 +99,12 @@ export default function PostCard({
             {post.repostOf?.text ? (
               <p className="text-sm text-slate-700 mt-2 whitespace-pre-wrap">{post.repostOf.text}</p>
             ) : null}
-            {post.repostOf?.imageUrl ? (
+            {post.repostOf?.imageUrl && !repostImageLoadFailed ? (
               <img
                 src={toServerAssetUrl(post.repostOf.imageUrl)}
                 alt="Original post"
                 className="mt-2 w-full max-h-80 object-cover rounded-lg border border-slate-200"
+                onError={() => setRepostImageLoadFailed(true)}
               />
             ) : null}
           </div>

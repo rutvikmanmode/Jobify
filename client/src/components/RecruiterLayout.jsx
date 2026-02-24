@@ -4,6 +4,8 @@ import { animated, useTransition } from "@react-spring/web";
 import API from "../api/axios";
 import { toServerAssetUrl } from "../utils/apiBase";
 
+const fallbackAvatar = "https://via.placeholder.com/80?text=U";
+
 const menuItems = [
   { key: "newsFeed", label: "News Feed", to: "/feed" },
   { key: "analytics", label: "Recruiter Analytics", to: "/recruiter/analytics" },
@@ -126,9 +128,13 @@ export default function RecruiterLayout({ title, subtitle, headerAction = null, 
 
             <Link to="/recruiter/profile" className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 hover:border-slate-300">
               <img
-                src={profile?.profilePhoto ? toServerAssetUrl(profile.profilePhoto) : "https://via.placeholder.com/80"}
+                src={profile?.profilePhoto ? toServerAssetUrl(profile.profilePhoto) : fallbackAvatar}
                 alt="Profile"
                 className="w-10 h-10 rounded-full object-cover border border-slate-200"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src = fallbackAvatar;
+                }}
               />
               <div className="text-left hidden sm:block">
                 <p className="text-sm font-semibold text-slate-900 leading-tight">{profile?.name || "My Profile"}</p>
