@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { protect } = require("../middleware/authmiddleware");
+const { photoUpload } = require("../middleware/uploadmiddleware");
 const {
   createPost,
   getPosts,
@@ -9,7 +10,7 @@ const {
   deletePost
 } = require("../controllers/postcontroller");
 
-router.post("/", protect, createPost);
+router.post("/", protect, photoUpload.single("image"), createPost);
 router.get("/", protect, getPosts);
 router.put("/:id/like", protect, likePost);
 router.delete("/:id", protect, deletePost);

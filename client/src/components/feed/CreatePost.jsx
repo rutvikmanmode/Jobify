@@ -2,21 +2,23 @@ import { useState } from "react";
 
 export default function CreatePost({ onCreate }) {
   const [text, setText] = useState("");
-  const [image, setImage] = useState("");
+  const [imageFile, setImageFile] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formEl = e.currentTarget;
     if (!text.trim()) return;
     setSubmitting(true);
     try {
       const created = await onCreate({
         text: text.trim(),
-        imageUrl: image.trim()
+        imageFile
       });
       if (created) {
         setText("");
-        setImage("");
+        setImageFile(null);
+        formEl.reset();
       }
     } finally {
       setSubmitting(false);
@@ -34,11 +36,10 @@ export default function CreatePost({ onCreate }) {
         required
       />
       <input
-        type="url"
+        type="file"
+        accept="image/*"
         className="input mt-3"
-        placeholder="Optional image URL"
-        value={image}
-        onChange={(e) => setImage(e.target.value)}
+        onChange={(e) => setImageFile(e.target.files?.[0] || null)}
       />
       <div className="mt-3">
         <button type="submit" className="btn-primary" disabled={submitting}>

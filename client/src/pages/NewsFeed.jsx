@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
-import Navbar from "../components/feed/Navbar";
 import CreatePost from "../components/feed/CreatePost";
 import Feed from "../components/feed/Feed";
+import StudentLayout from "../components/StudentLayout";
+import RecruiterLayout from "../components/RecruiterLayout";
 
 export default function NewsFeed() {
   const [posts, setPosts] = useState([]);
@@ -24,7 +25,17 @@ export default function NewsFeed() {
 
   const handleCreatePost = async (payload) => {
     try {
-      const res = await API.post("/posts", payload);
+      let res;
+      if (payload?.imageFile) {
+        const formData = new FormData();
+        formData.append("text", payload.text);
+        formData.append("image", payload.imageFile);
+        res = await API.post("/posts", formData, {
+          headers: { "Content-Type": "multipart/form-data" }
+        });
+      } else {
+        res = await API.post("/posts", { text: payload.text });
+      }
       setPosts((prev) => [res.data.data, ...prev]);
       return true;
     } catch (error) {
@@ -64,19 +75,38 @@ export default function NewsFeed() {
     }
   };
 
+  const content = (
+    <div className="grid gap-4">
+      <CreatePost onCreate={handleCreatePost} />
+      <Feed
+        posts={posts}
+        currentUserId={currentUserId}
+        onLike={handleLikePost}
+        onDelete={handleDeletePost}
+      />
+    </div>
+  );
+
+  if (role === "student") {
+    return (
+      <StudentLayout title="Jobify Feed" subtitle="News and updates from your hiring network.">
+        {content}
+      </StudentLayout>
+    );
+  }
+
+  if (role === "recruiter") {
+    return (
+      <RecruiterLayout title="Jobify Feed" subtitle="News and updates from your hiring network.">
+        {content}
+      </RecruiterLayout>
+    );
+  }
+
   return (
     <div className="app-shell">
       <div className="page-wrap max-w-4xl">
-        <Navbar role={role} />
-        <div className="grid gap-4">
-          <CreatePost onCreate={handleCreatePost} />
-          <Feed
-            posts={posts}
-            currentUserId={currentUserId}
-            onLike={handleLikePost}
-            onDelete={handleDeletePost}
-          />
-        </div>
+        {content}
       </div>
     </div>
   );

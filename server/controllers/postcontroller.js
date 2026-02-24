@@ -4,7 +4,9 @@ const Post = require("../models/post");
 exports.createPost = async (req, res, next) => {
   try {
     const text = String(req.body?.text || "").trim();
-    const imageUrl = String(req.body?.imageUrl || req.body?.image || "").trim();
+    const imageUrlFromBody = String(req.body?.imageUrl || req.body?.image || "").trim();
+    const imageUrlFromUpload = req.file ? `uploads/${req.file.filename}` : "";
+    const imageUrl = imageUrlFromUpload || imageUrlFromBody;
 
     if (!text) {
       return res.status(400).json({ success: false, message: "Post text is required" });
