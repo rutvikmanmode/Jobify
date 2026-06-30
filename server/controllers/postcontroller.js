@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Post = require("../models/post");
 const { normalizeUploadPath } = require("../utils/pathUtils");
+const { uploadToCloudinary, deleteFromCloudinary } = require("../config/cloudinary");
+const fs = require("fs");
 
 const populatePost = (query) => (
   query
@@ -29,8 +31,18 @@ exports.createPost = async (req, res, next) => {
   try {
     const text = String(req.body?.text || "").trim();
     const imageUrlFromBody = normalizeUploadPath(String(req.body?.imageUrl || req.body?.image || "").trim());
-    const imageUrlFromUpload = req.file ? normalizeUploadPath(`uploads/${req.file.filename}`) : "";
-    const imageUrl = imageUrlFromUpload || imageUrlFromBody;
+    
+    let imageUrl = imageUrlFromBody;
+    if (req.file) {
+      const cloudinaryResult = await uploadToCloudinary(req.file.path, "jobify/posts");
+      imageUrl = cloudinaryResult.secure_url;
+      
+      // Delete local file
+      if (fs.existsSync(req.file.path)) {
+        fs.unlinkSync(req.file.path);
+      }
+    }
+    
     const repostOf = String(req.body?.repostOf || "").trim();
 
     if (!text && !repostOf) {
@@ -59,6 +71,11 @@ exports.createPost = async (req, res, next) => {
     const populatedPost = await populatePost(Post.findById(post._id));
     return res.status(201).json({ success: true, data: withUserFlags(populatedPost, req.user.id) });
   } catch (error) {
+    if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch {}
+    }
     return next(error);
   }
 };
@@ -193,6 +210,11 @@ exports.deletePost = async (req, res, next) => {
         original.repostCount = Math.max(0, Number(original.repostCount || 0) - 1);
         await original.save();
       }
+    }
+
+    // Delete post image from Cloudinary if it exists
+    if (post.imageUrl && /^https?:\/\/res\.cloudinary\.com/i.test(post.imageUrl)) {
+      await deleteFromCloudinary(post.imageUrl);
     }
 
     await Post.findByIdAndDelete(id);

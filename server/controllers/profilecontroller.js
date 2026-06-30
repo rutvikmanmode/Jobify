@@ -3,6 +3,7 @@ const Job = require("../models/job");
 const path = require("path");
 const fs = require("fs");
 const { normalizeUploadPath } = require("../utils/pathUtils");
+const { uploadToCloudinary, deleteFromCloudinary } = require("../config/cloudinary");
 
 const publicEmailDomains = [
   "gmail.com",
@@ -70,21 +71,33 @@ exports.uploadPhoto = async (req, res) => {
       });
     }
 
-    // Optional: delete old photo if exists
     const user = await User.findById(req.user.id);
-    if (user.profilePhoto && !/^https?:\/\//i.test(user.profilePhoto)) {
-      try {
-        const normalizedPhotoPath = normalizeUploadPath(user.profilePhoto);
-        const oldPhotoPath = path.isAbsolute(normalizedPhotoPath)
-          ? normalizedPhotoPath
-          : path.join(__dirname, "..", normalizedPhotoPath);
-        if (fs.existsSync(oldPhotoPath)) {
-          fs.unlinkSync(oldPhotoPath);
-        }
-      } catch {}
+    
+    // Upload file to Cloudinary
+    const cloudinaryResult = await uploadToCloudinary(req.file.path, "jobify/profiles");
+    const photoPath = cloudinaryResult.secure_url;
+
+    // Delete local temp file
+    if (fs.existsSync(req.file.path)) {
+      fs.unlinkSync(req.file.path);
     }
 
-    const photoPath = normalizeUploadPath(`uploads/${req.file.filename}`);
+    // Optional: delete old photo if exists
+    if (user.profilePhoto) {
+      if (/^https?:\/\/res\.cloudinary\.com/i.test(user.profilePhoto)) {
+        await deleteFromCloudinary(user.profilePhoto, "image");
+      } else if (!/^https?:\/\//i.test(user.profilePhoto)) {
+        try {
+          const normalizedPhotoPath = normalizeUploadPath(user.profilePhoto);
+          const oldPhotoPath = path.isAbsolute(normalizedPhotoPath)
+            ? normalizedPhotoPath
+            : path.join(__dirname, "..", normalizedPhotoPath);
+          if (fs.existsSync(oldPhotoPath)) {
+            fs.unlinkSync(oldPhotoPath);
+          }
+        } catch {}
+      }
+    }
 
     await User.findByIdAndUpdate(req.user.id, {
       profilePhoto: photoPath
@@ -98,6 +111,12 @@ exports.uploadPhoto = async (req, res) => {
 
   } catch (error) {
     console.error(error);
+    // Ensure temporary file is cleaned up on failure
+    if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch {}
+    }
     res.status(500).json({
       success: false,
       message: "Photo upload failed"

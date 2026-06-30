@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import { SERVER_BASE_URL } from "../utils/apiBase";
+import { io } from "socket.io-client";
 
 const QUICK_REPLIES = {
   recruiter: [
@@ -52,6 +53,117 @@ const toIdString = (value) => {
   return String(value);
 };
 
+const getFileUrl = (url) => {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  return `${SERVER_BASE_URL}/${url}`;
+};
+
+const renderFilePreview = (m, mine) => {
+  const file = m.file;
+  if (!file) return null;
+
+  const fileUrl = getFileUrl(file.fileUrl);
+  const mimeType = file.mimeType || "";
+  const isImage = mimeType.startsWith("image/");
+  const isPdf = mimeType === "application/pdf" || file.fileName?.toLowerCase().endsWith(".pdf");
+
+  const formatBytes = (bytes) => {
+    if (!bytes) return "0 Bytes";
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+  };
+
+  if (isImage) {
+    return (
+      <div className="mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-white max-w-xs shadow-sm hover:shadow transition-shadow text-slate-800">
+        <img
+          src={fileUrl}
+          alt={file.fileName}
+          className="max-h-48 object-contain w-full cursor-pointer hover:opacity-95 transition-opacity"
+          onClick={() => window.open(fileUrl, "_blank")}
+        />
+        <div className="p-2 bg-slate-50 flex items-center justify-between gap-2 border-t border-slate-100">
+          <span className="truncate font-semibold text-xs text-slate-700">{file.fileName}</span>
+          <span className="shrink-0 text-[10px] text-slate-500 font-mono">{formatBytes(file.size)}</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (isPdf) {
+    return (
+      <div className="mt-2 rounded-2xl overflow-hidden border border-slate-200 bg-white max-w-sm w-full shadow-sm hover:shadow transition-shadow text-slate-800">
+        <div className="p-2.5 bg-slate-50 flex items-center gap-2 border-b border-slate-100">
+          <div className="p-1.5 bg-rose-100 rounded-lg shrink-0">
+            <svg className="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="font-semibold text-xs text-slate-700 truncate">{file.fileName}</p>
+            <p className="text-[10px] text-slate-500 font-mono">{formatBytes(file.size)} • PDF</p>
+          </div>
+          <a
+            href={fileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2.5 py-1 bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs font-semibold shrink-0 transition-colors"
+          >
+            Open
+          </a>
+        </div>
+        <div className="h-44 bg-slate-100 w-full relative flex flex-col items-center justify-center p-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-4 text-slate-400 select-none">
+            <svg className="w-10 h-10 text-rose-300 mb-2" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+            </svg>
+            <span className="text-xs font-semibold text-slate-600 max-w-[240px] truncate">{file.fileName}</span>
+            <span className="text-[10px] text-slate-400 mt-1">Click to open PDF</span>
+          </div>
+          <iframe
+            src={`${fileUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+            width="100%"
+            height="100%"
+            className="border-0 pointer-events-none absolute inset-0 w-full h-full z-10 bg-transparent"
+            title={file.fileName || "PDF Preview"}
+          />
+          <div
+            className="absolute inset-0 cursor-pointer z-20"
+            onClick={() => window.open(fileUrl, "_blank")}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-2 rounded-2xl border border-slate-200 bg-white p-2.5 max-w-xs flex items-center gap-2.5 shadow-sm hover:shadow transition-shadow text-slate-800">
+      <div className="p-1.5 bg-teal-50 rounded-lg shrink-0">
+        <svg className="w-5 h-5 text-teal-600" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+        </svg>
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className="font-semibold text-xs text-slate-700 truncate">{file.fileName}</p>
+        <p className="text-[10px] text-slate-500 font-mono">{formatBytes(file.size)}</p>
+      </div>
+      <a
+        href={fileUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-2.5 py-1 bg-teal-600 hover:bg-teal-700 text-white rounded-lg text-xs font-semibold shrink-0 transition-colors"
+      >
+        Open
+      </a>
+    </div>
+  );
+};
+
 export default function Messages() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,6 +182,7 @@ export default function Messages() {
   const [oldestCursor, setOldestCursor] = useState("");
   const [newestCursor, setNewestCursor] = useState("");
   const [error, setError] = useState("");
+  const [attachedFile, setAttachedFile] = useState(null);
   const [showNewChat, setShowNewChat] = useState(false);
   const [contactQuery, setContactQuery] = useState("");
   const [contacts, setContacts] = useState([]);
@@ -89,6 +202,7 @@ export default function Messages() {
   const quickReplies = QUICK_REPLIES[role] || QUICK_REPLIES.student;
   const selectedConversationId = selectedConversation?._id || null;
   const messagePaneRef = useRef(null);
+  const socketRef = useRef(null);
 
   const contactRole = role === "student" ? "recruiter" : "student";
 
@@ -243,62 +357,114 @@ export default function Messages() {
   }, [showNewChat, contactQuery, contactRole]);
 
   useEffect(() => {
-    if (!selectedConversationId) return undefined;
-    const messageTimer = setInterval(async () => {
-      try {
-        await pollSelectedConversation();
-      } catch {}
-    }, 5000);
+    // Initialize socket connection
+    const socket = io(SERVER_BASE_URL);
+    socketRef.current = socket;
 
+    if (currentUserId) {
+      socket.emit("register", currentUserId);
+    }
+
+    // Real-time message listener
+    socket.on("newMessage", ({ conversationId, message }) => {
+      if (selectedConversationId && String(conversationId) === String(selectedConversationId)) {
+        setMessages((prev) => mergeUniqueMessages(prev, [message]));
+        // Mark conversation as read on backend
+        API.patch(`/messages/conversations/${conversationId}/read`).catch(() => {});
+      } else {
+        // Increment unread count for other conversations in list
+        setConversations((prev) =>
+          prev.map((item) =>
+            item._id === conversationId
+              ? {
+                  ...item,
+                  unreadCount: Number(item.unreadCount || 0) + 1,
+                  lastMessagePreview: message.text || "Shared an attachment",
+                  lastMessageAt: message.createdAt
+                }
+              : item
+          )
+        );
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [selectedConversationId, currentUserId]);
+
+  // Keep a background conversation list polling at a larger interval (30 seconds)
+  useEffect(() => {
     const conversationTimer = setInterval(async () => {
       try {
         await fetchConversations();
       } catch {}
-    }, 12000);
+    }, 30000);
 
     return () => {
-      clearInterval(messageTimer);
       clearInterval(conversationTimer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedConversationId, newestCursor]);
+  }, []);
 
   useEffect(() => {
     if (!messagePaneRef.current) return;
     messagePaneRef.current.scrollTop = messagePaneRef.current.scrollHeight;
   }, [messages.length, selectedConversationId]);
 
+  useEffect(() => {
+    setAttachedFile(null);
+  }, [selectedConversationId]);
+
   const sendText = async () => {
-    if (!selectedConversationId || !text.trim() || sending) return;
+    if (!selectedConversationId || sending) return;
     const outgoingText = text.trim();
+    const hasFile = Boolean(attachedFile);
+    if (!outgoingText && !hasFile) return;
+
     const tempId = `temp-${Date.now()}`;
     const optimisticMessage = {
       _id: tempId,
       sender: { _id: currentUserId, name: "You", role },
-      messageType: "text",
+      messageType: hasFile ? "file" : "text",
       text: outgoingText,
+      file: attachedFile || undefined,
       createdAt: new Date().toISOString()
     };
 
     try {
       setSending(true);
       setText("");
+      setAttachedFile(null);
       setMessages((prev) => [...prev, optimisticMessage]);
+
       const res = await API.post(`/messages/conversations/${selectedConversationId}/messages`, {
         text: outgoingText,
-        messageType: "text"
+        messageType: hasFile ? "file" : "text",
+        file: attachedFile || undefined
       });
       const saved = res.data.data;
-      setMessages((prev) => prev.map((m) => (m._id === tempId ? saved : m)));
+      setMessages((prev) => {
+        const alreadyExists = prev.some((m) => m._id === saved._id);
+        if (alreadyExists) {
+          return prev.filter((m) => m._id !== tempId);
+        }
+        return prev.map((m) => (m._id === tempId ? saved : m));
+      });
       setNewestCursor(saved.createdAt || newestCursor);
       updateConversationInList(selectedConversationId, {
-        lastMessagePreview: outgoingText,
+        lastMessagePreview: hasFile
+          ? `Shared file: ${attachedFile.fileName || "attachment"}`
+          : outgoingText,
         lastMessageAt: saved.createdAt || new Date().toISOString(),
         unreadCount: 0
       });
     } catch (error) {
       setMessages((prev) => prev.filter((m) => m._id !== tempId));
       setText(outgoingText);
+      if (hasFile) {
+        setAttachedFile(optimisticMessage.file);
+      }
       setError(error?.response?.data?.message || error?.response?.data?.msg || "Could not send message.");
     } finally {
       setSending(false);
@@ -312,28 +478,17 @@ export default function Messages() {
     }
   };
 
-  const uploadAndSendFile = async (file) => {
+  const uploadFileToAttach = async (file) => {
     if (!selectedConversationId || !file || uploading) return;
     const data = new FormData();
     data.append("file", file);
     try {
       setUploading(true);
+      setError("");
       const uploadRes = await API.post("/messages/upload", data, {
         headers: { "Content-Type": "multipart/form-data" }
       });
-      const sendRes = await API.post(`/messages/conversations/${selectedConversationId}/messages`, {
-        messageType: "file",
-        text: "",
-        file: uploadRes.data.data
-      });
-      const saved = sendRes.data.data;
-      setMessages((prev) => mergeUniqueMessages(prev, [saved]));
-      setNewestCursor(saved.createdAt || newestCursor);
-      updateConversationInList(selectedConversationId, {
-        lastMessagePreview: `Shared file: ${uploadRes.data.data?.fileName || "attachment"}`,
-        lastMessageAt: saved.createdAt || new Date().toISOString(),
-        unreadCount: 0
-      });
+      setAttachedFile(uploadRes.data.data);
     } catch {
       setError("File upload failed.");
     } finally {
@@ -553,14 +708,10 @@ export default function Messages() {
                           </p>
                           {m.messageType === "text" && <p className="whitespace-pre-wrap break-words">{m.text}</p>}
                           {m.messageType === "file" && (
-                            <a
-                              href={`${baseUrl}/${m.file?.fileUrl}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={mine ? "underline text-white" : "underline text-sky-700"}
-                            >
-                              {m.file?.fileName || "Shared file"}
-                            </a>
+                            <div className="space-y-2">
+                              {m.text && <p className="whitespace-pre-wrap break-words">{m.text}</p>}
+                              {renderFilePreview(m, mine)}
+                            </div>
                           )}
                           {m.messageType === "interview" && (
                             <div className={`rounded-xl p-3 mt-1 ${mine ? "bg-teal-500/30" : "bg-amber-50"}`}>
@@ -599,6 +750,46 @@ export default function Messages() {
                     ))}
                   </div>
 
+                  {attachedFile && (
+                    <div className="flex items-center justify-between gap-3 p-3 bg-teal-50 border border-teal-200 rounded-xl max-w-md animate-fade-in shadow-sm">
+                      <div className="flex items-center gap-2 min-w-0">
+                        <div className="p-2 bg-teal-100 rounded-lg shrink-0 text-teal-600">
+                          {attachedFile.mimeType === "application/pdf" || attachedFile.fileName?.toLowerCase().endsWith(".pdf") ? (
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m.75 12l3 3m0 0l3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                            </svg>
+                          ) : (
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                            </svg>
+                          )}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-xs font-semibold text-teal-900 truncate">{attachedFile.fileName}</p>
+                          <p className="text-[10px] text-teal-600 font-mono">
+                            {(() => {
+                              const bytes = attachedFile.size;
+                              if (!bytes) return "0 Bytes";
+                              const k = 1024;
+                              const sizes = ["Bytes", "KB", "MB", "GB"];
+                              const i = Math.floor(Math.log(bytes) / Math.log(k));
+                              return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+                            })()}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => setAttachedFile(null)}
+                        className="p-1.5 hover:bg-teal-100 text-teal-600 hover:text-teal-800 rounded-full transition-colors shrink-0"
+                        title="Remove attachment"
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+
                   <div className="flex flex-col md:flex-row gap-2">
                     <textarea
                       value={text}
@@ -608,7 +799,11 @@ export default function Messages() {
                       className="input flex-1 min-h-[52px] max-h-[180px]"
                     />
                     <div className="flex gap-2">
-                      <button onClick={sendText} disabled={sending || !text.trim()} className="btn-primary">
+                      <button
+                        onClick={sendText}
+                        disabled={sending || (!text.trim() && !attachedFile)}
+                        className="btn-primary"
+                      >
                         {sending ? "Sending..." : "Send"}
                       </button>
                       <label className="btn-info cursor-pointer">
@@ -617,7 +812,10 @@ export default function Messages() {
                           type="file"
                           className="hidden"
                           disabled={uploading}
-                          onChange={(e) => uploadAndSendFile(e.target.files?.[0])}
+                          onChange={(e) => {
+                            uploadFileToAttach(e.target.files?.[0]);
+                            e.target.value = "";
+                          }}
                         />
                       </label>
                     </div>

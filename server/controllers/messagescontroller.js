@@ -2,6 +2,9 @@ const Conversation = require("../models/conversation");
 const Message = require("../models/message");
 const User = require("../models/user");
 const mongoose = require("mongoose");
+const { uploadToCloudinary } = require("../config/cloudinary");
+const fs = require("fs");
+const { emitToUser } = require("../config/socket");
 
 const toIdString = (value) => {
   if (!value) return "";
@@ -349,6 +352,16 @@ exports.sendMessage = async (req, res) => {
     await conversation.save();
 
     const populated = await Message.findById(message._id).populate("sender", "name role email");
+
+    // Emit socket event to participants in real-time
+    (conversation.participants || []).forEach((p) => {
+      const participantIdStr = String(p._id || p);
+      emitToUser(participantIdStr, "newMessage", {
+        conversationId: conversation._id.toString(),
+        message: populated
+      });
+    });
+
     return res.status(201).json({ success: true, data: populated });
   } catch (error) {
     console.error("sendMessage error:", error);
@@ -419,6 +432,16 @@ exports.scheduleInterview = async (req, res) => {
     await conversation.save();
 
     const populated = await Message.findById(message._id).populate("sender", "name role email");
+
+    // Emit socket event to participants in real-time
+    (conversation.participants || []).forEach((p) => {
+      const participantIdStr = String(p._id || p);
+      emitToUser(participantIdStr, "newMessage", {
+        conversationId: conversation._id.toString(),
+        message: populated
+      });
+    });
+
     return res.status(201).json({ success: true, data: populated });
   } catch (error) {
     console.error("scheduleInterview error:", error);
@@ -494,10 +517,19 @@ exports.uploadSharedFile = async (req, res) => {
       return res.status(400).json({ success: false, message: "No file uploaded" });
     }
 
+    // Upload to Cloudinary under the 'jobify/chat' folder
+    const cloudinaryResult = await uploadToCloudinary(req.file.path, "jobify/chat");
+    const fileUrl = cloudinaryResult.secure_url;
+
+    // Delete temporary local file
+    if (fs.existsSync(req.file.path)) {
+      fs.unlinkSync(req.file.path);
+    }
+
     return res.json({
       success: true,
       data: {
-        fileUrl: `uploads/chat/${req.file.filename}`,
+        fileUrl,
         fileName: req.file.originalname,
         mimeType: req.file.mimetype,
         size: req.file.size
@@ -505,6 +537,11 @@ exports.uploadSharedFile = async (req, res) => {
     });
   } catch (error) {
     console.error("uploadSharedFile error:", error);
+    if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch {}
+    }
     return res.status(500).json({ success: false, message: "Failed to upload file" });
   }
 };

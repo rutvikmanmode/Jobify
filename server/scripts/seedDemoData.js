@@ -1,6 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const cloudinary = require("cloudinary").v2;
 
 const User = require("../models/user");
 const Job = require("../models/job");
@@ -8,6 +9,42 @@ const Application = require("../models/application");
 const Post = require("../models/post");
 
 const DEMO_PASSWORD = "Password@123";
+
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+const studentAvatars = [
+  "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400", // Male (Arjun)
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400", // Female (Priya)
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400", // Male (Dev)
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400", // Female (Neha)
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400", // Male (Rahul)
+  "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400", // Female (Sana)
+  "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=400", // Male (Karthik)
+  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400", // Female (Isha)
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400", // Male (Aman)
+  "https://images.unsplash.com/photo-1541534401786-2077eed87a72?w=400"  // Female (Tanya)
+];
+
+async function uploadExternalImageToCloudinary(url, folder) {
+  if (!process.env.CLOUDINARY_CLOUD_NAME || process.env.CLOUDINARY_CLOUD_NAME === "your_cloudinary_cloud_name") {
+    return url;
+  }
+  try {
+    const result = await cloudinary.uploader.upload(url, {
+      folder: folder,
+      resource_type: "image"
+    });
+    return result.secure_url;
+  } catch (error) {
+    console.warn(`Failed to upload ${url} to Cloudinary, using original. Error:`, error.message);
+    return url;
+  }
+}
 
 const recruitersSeed = [
   {
@@ -825,11 +862,19 @@ async function connect() {
 async function upsertRecruiters(passwordHash) {
   const out = [];
   for (const rec of recruitersSeed) {
+    let profilePhotoUrl = "";
+    if (rec.recruiterProfile && rec.recruiterProfile.profilePictureUrl) {
+      console.log(`Uploading profile photo for recruiter ${rec.name} to Cloudinary...`);
+      profilePhotoUrl = await uploadExternalImageToCloudinary(rec.recruiterProfile.profilePictureUrl, "jobify/profiles");
+      rec.recruiterProfile.profilePictureUrl = profilePhotoUrl;
+    }
+
     const doc = await User.findOneAndUpdate(
       { email: rec.email },
       {
         $set: {
           ...rec,
+          profilePhoto: profilePhotoUrl,
           password: passwordHash
         }
       },
@@ -842,12 +887,19 @@ async function upsertRecruiters(passwordHash) {
 
 async function upsertStudents(passwordHash) {
   const out = [];
-  for (const stu of studentsSeed) {
+  for (let i = 0; i < studentsSeed.length; i++) {
+    const stu = studentsSeed[i];
+    const avatarUrl = studentAvatars[i] || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400";
+    
+    console.log(`Uploading profile photo for student ${stu.name} to Cloudinary...`);
+    const profilePhotoUrl = await uploadExternalImageToCloudinary(avatarUrl, "jobify/profiles");
+
     const doc = await User.findOneAndUpdate(
       { email: stu.email },
       {
         $set: {
           ...stu,
+          profilePhoto: profilePhotoUrl,
           password: passwordHash
         }
       },
@@ -1138,32 +1190,57 @@ async function upsertApplications(students, jobs) {
   }
 }
 
-function buildPostsForUser(user, index) {
-  const roleLabel = user.role === "recruiter" ? "Hiring" : "Learning";
-  const topics = [
-    "Sharing progress update and key takeaways this week.",
-    "Open to collaborations and meaningful conversations.",
-    "Focused on consistent growth and practical outcomes."
-  ];
-
-  return topics.map((topic, postIndex) => ({
-    text: `${roleLabel} update ${postIndex + 1}: ${user.name} - ${topic}`,
-    imageUrl: "",
-    likes: Math.max(0, (index + 1) * (postIndex + 2)),
-    author: user._id
-  }));
-}
+const postImages = [
+  "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600", // Code on laptop
+  "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600", // Team meeting
+  "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600", // Tech design / wireframes
+  "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=600", // Presentation / training
+  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=600", // Laptop workspace
+  "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600", // Group studying / working
+  "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600", // Office brainstorming
+  "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=600", // Typing on keyboard
+  "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600", // Tech office space
+  "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600"  // Digital connection / tablet
+];
 
 async function upsertPosts(recruiters, students) {
   const users = [...recruiters, ...students];
-  const postsSeed = users.flatMap((user, index) => buildPostsForUser(user, index));
+  
+  for (let index = 0; index < users.length; index++) {
+    const user = users[index];
+    const roleLabel = user.role === "recruiter" ? "Hiring" : "Learning";
+    
+    const topics = [
+      "Sharing progress update and key takeaways this week.",
+      "Open to collaborations and meaningful conversations.",
+      "Focused on consistent growth and practical outcomes."
+    ];
 
-  for (const post of postsSeed) {
-    await Post.findOneAndUpdate(
-      { author: post.author, text: post.text },
-      { $set: post },
-      { upsert: true, new: true, setDefaultsOnInsert: true }
-    );
+    for (let postIndex = 0; postIndex < topics.length; postIndex++) {
+      const topic = topics[postIndex];
+      const text = `${roleLabel} update ${postIndex + 1}: ${user.name} - ${topic}`;
+      
+      let imageUrl = "";
+      // Upload an image for the first post of each user
+      if (postIndex === 0) {
+        const imageSource = postImages[index % postImages.length];
+        console.log(`Uploading post image for ${user.name}'s post to Cloudinary...`);
+        imageUrl = await uploadExternalImageToCloudinary(imageSource, "jobify/posts");
+      }
+
+      const postData = {
+        text,
+        imageUrl,
+        likes: Math.max(0, (index + 1) * (postIndex + 2)),
+        author: user._id
+      };
+
+      await Post.findOneAndUpdate(
+        { author: postData.author, text: postData.text },
+        { $set: postData },
+        { upsert: true, new: true, setDefaultsOnInsert: true }
+      );
+    }
   }
 }
 

@@ -3,6 +3,7 @@ const path = require("path");
 const pdfParse = require("pdf-parse");
 const User = require("../models/user");
 const Job = require("../models/job");
+const { uploadToCloudinary, deleteFromCloudinary } = require("../config/cloudinary");
 
 const SKILL_BANK = [
   "javascript", "typescript", "node", "express", "react", "next.js", "mongodb",
@@ -151,15 +152,43 @@ exports.uploadResume = async (req, res) => {
 
     const user = await User.findById(req.user.id);
     if (!user) {
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
       return res.status(404).json({ success: false, error: "User not found" });
     }
 
-    user.resume = `uploads/${req.file.filename}`;
+    // Upload file to Cloudinary
+    const cloudinaryResult = await uploadToCloudinary(filePath, "jobify/resumes");
+    const cloudResumeUrl = cloudinaryResult.secure_url;
+
+    // Delete local temp file
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
+
+    // Optionally delete old resume from Cloudinary / local storage
+    if (user.resume) {
+      if (/^https?:\/\/res\.cloudinary\.com/i.test(user.resume)) {
+        await deleteFromCloudinary(user.resume);
+      } else if (!/^https?:\/\//i.test(user.resume)) {
+        try {
+          const oldResumePath = path.isAbsolute(user.resume)
+            ? user.resume
+            : path.join(__dirname, "..", user.resume);
+          if (fs.existsSync(oldResumePath)) {
+            fs.unlinkSync(oldResumePath);
+          }
+        } catch {}
+      }
+    }
+
+    user.resume = cloudResumeUrl;
     user.resumeText = data.text;
     user.skills = toUniqueSkills([...(user.skills || []), ...extractedSkills]);
     user.resumeVersions = user.resumeVersions || [];
     user.resumeVersions.push({
-      resumePath: `uploads/${req.file.filename}`,
+      resumePath: cloudResumeUrl,
       resumeText: data.text,
       extractedSkills,
       source: "upload"
@@ -177,6 +206,11 @@ exports.uploadResume = async (req, res) => {
     });
   } catch (error) {
     console.error("PDF parsing error:", error.message);
+    if (req.file && req.file.path && fs.existsSync(req.file.path)) {
+      try {
+        fs.unlinkSync(req.file.path);
+      } catch {}
+    }
     return res.status(500).json({
       success: false,
       error: "Failed to parse resume",
@@ -191,6 +225,30 @@ exports.viewResumeInline = async (req, res) => {
     const filePath = path.join(__dirname, "..", "uploads", filename);
 
     if (!fs.existsSync(filePath)) {
+      // Find user or history with this filename
+      const user = await User.findOne({
+        $or: [
+          { resume: { $regex: filename, $options: "i" } },
+          { "resumeVersions.resumePath": { $regex: filename, $options: "i" } }
+        ]
+      });
+
+      if (user) {
+        let matchedUrl = null;
+        if (user.resume && user.resume.includes(filename)) {
+          matchedUrl = user.resume;
+        } else {
+          const version = user.resumeVersions.find(v => v.resumePath && v.resumePath.includes(filename));
+          if (version) {
+            matchedUrl = version.resumePath;
+          }
+        }
+
+        if (matchedUrl && /^https?:\/\//i.test(matchedUrl)) {
+          return res.redirect(matchedUrl);
+        }
+      }
+
       return res.status(404).json({ message: "Resume not found" });
     }
 
