@@ -1,336 +1,443 @@
-# Jobify
+<div align="center">
 
-Jobify is a full-stack hiring platform that connects students and recruiters in one workflow.
-It provides role-based dashboards for job posting, applications, resume analysis, chat, interview scheduling, and analytics.
-depoyed link - https://jobify-nu-flame.vercel.app/?_vercel_share=UXf06VC18mDWhZfB3UP58KA8EWrluXIs
+  <img src="./client/public/jobify-logo.png" alt="Jobify Logo" width="140" />
 
-## Core Features
+  # Jobify 🚀
 
-### Student Features
-- Register/login with JWT authentication.
-- Build and manage profile information.
-- Upload resume PDF and auto-extract skills.
-- Resume builder + resume version history.
-- Resume score preview against a job.
-- Resume improvement and skill suggestions.
-- Browse open jobs.
-- View recommended jobs based on skill match.
-- Apply to jobs and auto-apply using a score threshold.
-- Track application statuses.
-- Message recruiters in real time and share files.
+  **Next-Generation AI-Ready Recruitment & Career Acceleration Platform**
 
-### Recruiter Features
-- Register/login with role-based access.
-- Manage recruiter profile and company information.
-- Create, edit, archive, and delete jobs.
-- Add recruiters to managed jobs.
-- View candidate applications with filters.
-- Update application status and review notes.
-- Search contacts and message candidates.
-- Schedule interviews inside chat.
-- Track interview status (scheduled/cancelled/completed).
-- View analytics dashboard (funnel, trends, response times, skill gaps, pipeline health).
+  *Connecting ambitious students and modern recruiters through intelligent resume parsing, automated ATS scoring, real-time messaging, and actionable talent analytics.*
 
-### Platform Features
-- Role-based route protection in frontend and backend.
-- JWT auth middleware and token version invalidation.
-- Login activity tracking.
-- Account settings (password change, email update verification, logout all devices, account deletion).
-- File uploads for resumes, profile photos, and chat attachments.
-- News Feed system (create post, like post, delete post, newest-first feed).
+  <br />
 
-## Tech Stack
+  [![Live Demo](https://img.shields.io/badge/Demo-Live%20Preview-00C781?style=for-the-badge&logo=vercel&logoColor=white)](https://jobify-nu-flame.vercel.app/)
+  [![React](https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+  [![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
+  [![Express](https://img.shields.io/badge/Express-5.2-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+  [![MongoDB](https://img.shields.io/badge/MongoDB-Mongoose%209-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+  [![Socket.io](https://img.shields.io/badge/Socket.io-4.8-010101?style=for-the-badge&logo=socket.io&logoColor=white)](https://socket.io/)
+  [![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-- Frontend: React, Vite, React Router, Axios, Tailwind CSS, Recharts, React Spring.
-- Backend: Node.js, Express, MongoDB (Mongoose), JWT, Multer, pdf-parse.
+  <br />
 
-## Project Structure
+  [🌐 Live Application](https://jobify-nu-flame.vercel.app/) •
+  [✨ Key Features](#-key-features) •
+  [🛠️ Tech Stack](#️-tech-stack) •
+  [⚡ Quick Start](#-quick-start) •
+  [🔑 Demo Accounts](#-demo-accounts) •
+  [📡 API Reference](#-api-reference) •
+  [🚀 Deployment](#-deployment-guide)
+
+</div>
+
+---
+
+## 📌 Overview
+
+**Jobify** is a unified full-stack hiring and career platform engineered to streamline the end-to-end recruitment lifecycle. By eliminating fragmented tooling, Jobify equips candidates with resume intelligence and automated application capabilities, while providing recruiters with an Applicant Tracking System (ATS), interactive candidate evaluation tools, integrated real-time chat with interview scheduling, and deep pipeline analytics.
+
+```mermaid
+flowchart LR
+    A[Student / Candidate] <-->|Resume Parsing & ATS Matching| B[Jobify Platform]
+    C[Recruiter / Employer] <-->|Job Management & Analytics| B
+    B <-->|Real-Time WebSockets| D[Live Chat & Interview Scheduling]
+    B <-->|Community Interaction| E[Professional News Feed]
+```
+
+---
+
+## ✨ Key Features
+
+### 🎓 Candidate & Student Experience
+- **Smart Resume Center**:
+  - Upload PDF resumes with automated skill extraction powered by `pdf-parse` & `textract`.
+  - Built-in interactive **Resume Builder** for crafting ATS-optimized profiles.
+  - **Resume Version History**: Track revisions and compare skill coverage across versions.
+  - **ATS Score Preview**: Real-time compatibility score matching candidate skills against active job descriptions.
+  - Automated skill and improvement suggestions to boost application success.
+- **Job Discovery & Matching**:
+  - Filter jobs by role, domain, location, and required tech stack.
+  - **Recommended Jobs**: Tailored job matches computed from skill overlap percentages.
+  - **1-Click Apply & Auto-Apply**: Set a custom ATS threshold (e.g., $\ge 80\%$) to automatically apply to matching openings.
+- **Application Tracking Pipeline**:
+  - Live status tracking across each phase: `Pending` ➔ `Reviewing` ➔ `Shortlisted` ➔ `Interview Scheduled` ➔ `Accepted` / `Rejected`.
+- **Integrated Real-Time Chat**:
+  - Direct communication with hiring managers.
+  - Receive, review, and accept interview invitations inside the conversation.
+  - Share portfolios, documents, and attachments directly.
+
+---
+
+### 💼 Recruiter & Hiring Experience
+- **Job & Requisition Management**:
+  - Create, edit, archive, reactivate, and delete job postings.
+  - Define required skills, experience levels, salary brackets, and work arrangements (Remote / Hybrid / Onsite).
+  - Multi-recruiter team collaboration: Assign co-recruiters to managed openings.
+- **Candidate Evaluation & ATS Pipeline**:
+  - Review candidate applications sorted and filtered by match score and status.
+  - Examine parsed resumes, portfolio links, and extracted competencies.
+  - Update candidate stage and attach internal evaluation notes.
+- **In-Chat Interview Scheduling**:
+  - Schedule interviews directly from the candidate conversation thread.
+  - Specify interview date, time, format (Video / Phone / In-person), and meeting links.
+  - Track interview status lifecycle (`Scheduled`, `Completed`, `Cancelled`).
+- **Talent Analytics Dashboard**:
+  - **Recruitment Funnel**: Visual progression from application to offer.
+  - **Application Trends**: Time-series volume analysis via interactive Recharts.
+  - **Response Times & Bottlenecks**: Gauge hiring velocity and communication SLAs.
+  - **Skill Gap Analysis**: Radar and bar charts comparing job requirements against applicant pools.
+
+---
+
+### 🌐 Platform & Social Features
+- **Professional News Feed**:
+  - Community feed for job market discussions, career milestones, and industry news.
+  - Rich post authoring with image uploads (Cloudinary / local storage).
+  - Interactive social engagement: likes, comments, and reposts.
+- **Enterprise-Grade Security**:
+  - Role-Based Access Control (RBAC) protecting endpoints and frontend routes.
+  - Secure JWT authentication with **token version invalidation** (instant token revocation upon logout or password changes).
+  - Session history and active login tracking.
+  - Secure password changes, email update verification flows, and full account deletion.
+
+---
+
+## 🛠️ Tech Stack
+
+| Domain | Technology | Description |
+| :--- | :--- | :--- |
+| **Frontend Framework** | [React 19](https://react.dev/) + [Vite 7](https://vitejs.dev/) | High-performance SPA with fast HMR |
+| **Styling & UI** | [Tailwind CSS 3.4](https://tailwindcss.com/) | Utility-first, responsive design system |
+| **Icons & Motion** | [Lucide React](https://lucide.dev/) & [React Spring](https://www.react-spring.dev/) | Modern icon suite & physics-based animations |
+| **Data Visualization**| [Recharts 3.7](https://recharts.org/) | Responsive SVG charts for recruiter analytics |
+| **Backend Runtime** | [Node.js 18+](https://nodejs.org/) & [Express 5](https://expressjs.com/) | RESTful API server & middleware engine |
+| **Database & ODM** | [MongoDB](https://www.mongodb.com/) & [Mongoose 9](https://mongoosejs.com/) | Document database with schematized data models |
+| **Real-Time Engine** | [Socket.io 4.8](https://socket.io/) | Bi-directional WebSocket communication for chat |
+| **Authentication** | [JSON Web Tokens (JWT)](https://jwt.io/) & [bcryptjs](https://github.com/dcodeIO/bcrypt.js) | Stateless auth with salted password hashing |
+| **File Processing** | [Multer](https://github.com/expressjs/multer), [pdf-parse](https://www.npmjs.com/package/pdf-parse), [textract](https://www.npmjs.com/package/textract) | Multipart handling & PDF text/skill extraction |
+| **Cloud Storage** | [Cloudinary](https://cloudinary.com/) | Cloud hosting for avatars, attachments & media |
+| **Deployment** | [Vercel](https://vercel.com/) & [Render](https://render.com/) | Frontend CDN & Backend managed cloud service |
+
+---
+
+## 🏗️ Architecture & Directory Layout
 
 ```text
 jobify/
-  client/   # React + Vite frontend
-  server/   # Express + MongoDB backend
+├── client/                     # Frontend Application (React + Vite)
+│   ├── public/                 # Static branding and assets
+│   ├── src/
+│   │   ├── api/                # Axios API instance and endpoints
+│   │   ├── assets/             # Illustrations, logos, and graphics
+│   │   ├── components/         # Shared UI elements & layouts
+│   │   │   ├── feed/           # News feed posts, navbar & cards
+│   │   │   ├── CornerLogo.jsx  # Persistent corner branding
+│   │   │   ├── ProtectedRoute.jsx # RBAC route guard
+│   │   │   ├── RecruiterLayout.jsx
+│   │   │   └── StudentLayout.jsx
+│   │   ├── pages/              # Application views & dashboards
+│   │   │   ├── LandingPage.jsx         # Public landing page
+│   │   │   ├── NewsFeed.jsx            # Social feed & updates
+│   │   │   ├── StudentDashboard.jsx    # Candidate job board
+│   │   │   ├── StudentResumeCenter.jsx # Resume builder & ATS tools
+│   │   │   ├── StudentApplications.jsx # Status tracking
+│   │   │   ├── RecruiterDashboard.jsx  # Candidate pipeline management
+│   │   │   ├── RecruiterAnalytics.jsx  # Recharts analytics suite
+│   │   │   ├── Messages.jsx            # Live chat & interview scheduler
+│   │   │   └── AccountSettings.jsx     # Security & session controls
+│   │   ├── App.jsx             # Route definitions & transitions
+│   │   └── main.jsx            # React root mount
+│   ├── tailwind.config.js      # Tailwind theme configuration
+│   └── vite.config.js          # Vite configuration
+│
+├── server/                     # Backend Application (Express + Node.js)
+│   ├── config/
+│   │   ├── db.js               # MongoDB connection handler
+│   │   └── socket.js           # Socket.io setup & user socket mapping
+│   ├── controllers/            # Business logic controllers
+│   ├── middleware/             # Auth, error handling & upload filters
+│   ├── models/                 # Mongoose schemas (User, Job, Application, etc.)
+│   ├── routes/                 # Express API routes
+│   ├── scripts/
+│   │   ├── seedDemoData.js     # Rich database seeder script
+│   │   └── generateMockDataPdf.js # Test document generator
+│   ├── uploads/                # Local file storage fallback
+│   ├── server.js               # Express & HTTP server entrypoint
+│   └── package.json            # Backend dependencies & scripts
+│
+├── LICENSE                     # MIT License
+└── README.md                   # Project documentation
 ```
 
-## Prerequisites
+---
 
-- Node.js 18+ (recommended).
-- npm.
-- MongoDB connection string.
+## ⚡ Quick Start
 
-## Required Libraries and Frameworks (Before Running)
+### Prerequisites
+- **Node.js**: v18.0.0 or higher
+- **npm**: v9.0.0 or higher
+- **MongoDB**: Local instance running or a free [MongoDB Atlas](https://www.mongodb.com/atlas) cluster URI
 
-Install these from `package.json` using `npm install` in `server` and `client`.
+---
 
-### Backend Frameworks/Libraries (`server`)
+### 1. Clone the Repository
 
-- `express` - API server framework.
-- `mongoose` - MongoDB ODM.
-- `cors` - Cross-origin request support.
-- `dotenv` - Environment variable loader.
-- `jsonwebtoken` - JWT auth.
-- `bcryptjs` - Password hashing.
-- `multer` - File upload handling.
-- `pdf-parse` - Resume PDF text extraction.
-- `textract` - Text extraction utility support.
-- `nodemon` (dev) - Auto-restart server during development.
+```bash
+git clone https://github.com/rutvikmanmode/Jobify.git
+cd Jobify
+```
 
-### Frontend Frameworks/Libraries (`client`)
+---
 
-- `react` and `react-dom` - UI framework.
-- `vite` - Frontend dev server and build tool.
-- `@vitejs/plugin-react` - React plugin for Vite.
-- `react-router-dom` - Routing.
-- `axios` - API client.
-- `tailwindcss`, `postcss`, `autoprefixer` - Styling pipeline.
-- `recharts` - Dashboard charts.
-- `@react-spring/web` - UI animations.
-- `lucide-react` - Icon library.
+### 2. Configure Environment Variables
 
-### Lint/Tooling (`client`)
-
-- `eslint`
-- `@eslint/js`
-- `eslint-plugin-react-hooks`
-- `eslint-plugin-react-refresh`
-- `globals`
-
-## Environment Variables
-
-Create `server/.env` (you can copy from `server/.env.example`):
+#### Backend (`server/.env`)
+Create a file at `server/.env` (or duplicate `server/.env.example`):
 
 ```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
+# Server Configuration
 PORT=5000
 NODE_ENV=development
 CLIENT_URL=http://localhost:5173
+
+# Database & Security
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/jobify?retryWrites=true&w=majority
+JWT_SECRET=your_super_secret_jwt_key_here
+
+# Optional: Cloudinary Storage (falls back to local disk if unconfigured)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
-Create `client/.env` (you can copy from `client/.env.example`):
+#### Frontend (`client/.env`)
+Create a file at `client/.env` (or duplicate `client/.env.example`):
 
 ```env
 VITE_API_BASE_URL=http://localhost:5000/api
 ```
 
-## Installation
+---
 
-### 1. Install backend dependencies
+### 3. Install Dependencies
+
+In your terminal, install dependencies for both services:
 
 ```bash
+# Install backend dependencies
 cd server
 npm install
-```
 
-### 2. Install frontend dependencies
-
-```bash
+# Install frontend dependencies
 cd ../client
 npm install
 ```
 
-## Running the App (Development)
+---
 
-Open two terminals.
+### 4. Seed Demo Data *(Recommended)*
 
-### Terminal 1: backend
-
-```bash
-cd server
-npm run dev
-```
-
-Backend runs at `http://localhost:5000`.
-
-### Terminal 2: frontend
-
-```bash
-cd client
-npm run dev
-```
-
-Frontend runs at `http://localhost:5173` (default Vite port).
-
-## All Terminal Commands
-
-### Backend (`server`)
-
-- Install dependencies:
-
-```bash
-cd server
-npm install
-```
-
-- Start backend (production mode):
-
-```bash
-npm start
-```
-
-- Start backend (development with nodemon):
-
-```bash
-npm run dev
-```
-
-- Seed demo data:
-
-```bash
-npm run seed:demo
-```
-
-- Reset and reseed demo data:
-
-```bash
-npm run seed:demo:reset
-```
-
-- Generate mock data report PDF:
-
-```bash
-node scripts/generateMockDataPdf.js
-```
-
-### Frontend (`client`)
-
-- Install dependencies:
-
-```bash
-cd client
-npm install
-```
-
-- Start frontend dev server:
-
-```bash
-npm run dev
-```
-
-- Build production bundle:
-
-```bash
-npm run build
-```
-
-- Preview production build:
-
-```bash
-npm run preview
-```
-
-- Run ESLint:
-
-```bash
-npm run lint
-```
-
-## Demo Data
-
-You can load demo users/jobs/applications with:
+Populate your database with realistic recruiters, verified companies, candidates, active job postings, application histories, and feed posts:
 
 ```bash
 cd server
 npm run seed:demo
 ```
 
-Default password for all seeded demo users:
+> [!TIP]
+> To wipe existing demo records and reseed from a clean state, run:
+> ```bash
+> npm run seed:demo:reset
+> ```
 
-```text
-Password@123
+---
+
+### 5. Run the Application
+
+Run the backend and frontend in two separate terminals:
+
+#### Terminal 1 — Backend:
+```bash
+cd server
+npm run dev
 ```
+> Server runs at `http://localhost:5000`
 
-## API Base
-
-Frontend API client points to:
-
-```text
-VITE_API_BASE_URL (defaults to http://localhost:5000/api if not set)
+#### Terminal 2 — Frontend:
+```bash
+cd client
+npm run dev
 ```
+> Client runs at `http://localhost:5173`
 
-Main backend route groups:
+---
 
-- `/api/auth`
-- `/api/profile`
-- `/api/resume`
-- `/api/jobs`
-- `/api/applications`
-- `/api/analytics`
-- `/api/messages`
-- `/api/posts`
+## 🔑 Demo Accounts
 
-News Feed APIs:
+Use any of these pre-seeded demo accounts to explore the platform. 
 
-- `POST /api/posts` - create a post (`text` required, `imageUrl` optional)
-- `GET /api/posts` - fetch all posts (newest first)
-- `PUT /api/posts/:id/like` - toggle like/unlike
-- `POST /api/posts/:id/comments` - add comment
-- `POST /api/posts/:id/repost` - repost with optional text
-- `DELETE /api/posts/:id` - delete a post
+> **Default password for all seeded accounts:** `Password@123`
 
-Frontend flow updates:
+| Role | Name | Email | Details |
+| :--- | :--- | :--- | :--- |
+| **Recruiter** | Aisha Verma | `aisha.verma@neurostack.ai` | Senior Recruiter @ NeuroStack AI |
+| **Recruiter** | Rohan Kapoor | `rohan.kapoor@neurostack.ai` | Talent Acquisition @ NeuroStack AI |
+| **Recruiter** | Meera Nair | `meera.nair@finbyte.com` | Technical Recruiter @ FinByte Labs |
+| **Student** | Arjun Menon | `arjun.menon@studentmail.com` | Final Year CSE — Backend & Cloud |
+| **Student** | Priya Shah | `priya.shah@studentmail.com` | Frontend Engineer — React & TypeScript |
+| **Student** | Dev Patel | `dev.patel@studentmail.com` | Full Stack Developer |
 
-- After login, users land on `/feed`.
-- Student available jobs page: `/student/jobs/available`
-- Recruiter analytics page: `/recruiter/analytics`
+---
 
-## Notes
+## 📡 API Reference
 
-- Uploaded files are served from `server/uploads` at `/uploads/...`.
-- Resume parsing currently expects PDF uploads.
-- Keep `JWT_SECRET` and `MONGO_URI` private.
-- Render free tier uses ephemeral disk, so uploaded files may be lost on restarts/redeploys.
+All REST endpoints are prefixed with `/api`. Authenticated routes require an `Authorization: Bearer <token>` header.
 
-## Deployment (Vercel + Render)
+### 🔐 Authentication & Account (`/api/auth`)
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Public | Register new student or recruiter |
+| `POST` | `/api/auth/login` | Public | Authenticate user & receive JWT token |
+| `GET` | `/api/auth/account/settings` | Private | Retrieve user account preferences |
+| `POST` | `/api/auth/account/change-password` | Private | Update account password |
+| `POST` | `/api/auth/account/request-email-update` | Private | Initiate email verification flow |
+| `POST` | `/api/auth/account/verify-email-update` | Private | Confirm email verification token |
+| `GET` | `/api/auth/account/login-activity` | Private | View active sessions & sign-in logs |
+| `POST` | `/api/auth/account/logout-all-devices` | Private | Revoke all active tokens via version increment |
+| `DELETE`| `/api/auth/account/delete` | Private | Permanently delete account |
 
-### 1. Deploy backend to Render (Web Service)
+### 📄 Profile & Resumes (`/api/profile` & `/api/resume`)
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/profile/me` | Private | Fetch logged-in user profile |
+| `PUT` | `/api/profile/me` | Private | Update profile bio, skills, education |
+| `POST` | `/api/profile/photo` | Private | Upload profile picture |
+| `GET` | `/api/profile/recruiter/:id`| Private | View public recruiter & company info |
+| `POST` | `/api/resume/upload` | Student | Upload resume PDF & auto-extract skills |
+| `GET` | `/api/resume/history` | Student | Retrieve uploaded resume versions |
+| `GET` | `/api/resume/builder` | Student | Fetch structured resume builder data |
+| `POST` | `/api/resume/builder` | Student | Save structured resume builder data |
+| `GET` | `/api/resume/score-preview/:jobId` | Student | Calculate ATS match score against a job |
+| `GET` | `/api/resume/skill-suggestions` | Student | Get recommended skills to add |
+| `GET` | `/api/resume/improvement-suggestions` | Student | Get resume quality tips |
 
-Use these settings for the `server` folder:
+### 💼 Jobs & Recommendations (`/api/jobs`)
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/jobs` | Private | List all open job opportunities |
+| `POST` | `/api/jobs` | Recruiter | Create a new job requisition |
+| `PUT` | `/api/jobs/:jobId` | Recruiter | Update job details |
+| `DELETE`| `/api/jobs/:jobId` | Recruiter | Delete a job posting |
+| `PATCH`| `/api/jobs/:jobId/status` | Recruiter | Archive or activate job posting |
+| `POST` | `/api/jobs/:jobId/recruiters` | Recruiter | Assign co-recruiter to job |
+| `GET` | `/api/jobs/recommended` | Student | Fetch jobs scored by skill relevance |
+| `GET` | `/api/jobs/company/:companyName` | Private | Retrieve company overview & active jobs |
 
-- Root Directory: `server`
-- Build Command: `npm install`
-- Start Command: `npm start`
+### 📬 Applications (`/api/applications`)
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/applications/:jobId` | Student | Apply to a job |
+| `DELETE`| `/api/applications/:jobId` | Student | Withdraw application |
+| `GET` | `/api/applications/my` | Student | List student's submitted applications |
+| `POST` | `/api/applications/auto-apply` | Student | Auto-apply to jobs matching score threshold |
+| `GET` | `/api/applications/job/:jobId` | Recruiter | View all applicants for a specific job |
+| `PATCH`| `/api/applications/:applicationId/status` | Recruiter | Update stage (`Reviewing`, `Accepted`, etc.) |
+| `PATCH`| `/api/applications/:applicationId/review` | Recruiter | Save internal candidate review notes |
 
-Set Render environment variables:
+### 💬 Messaging & Interviews (`/api/messages`)
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/messages/contacts` | Private | Search user directory for messaging |
+| `GET` | `/api/messages/conversations` | Private | List all active direct conversations |
+| `POST` | `/api/messages/conversations` | Private | Create or fetch conversation thread |
+| `GET` | `/api/messages/conversations/:id/messages` | Private | Get messages for a thread |
+| `POST` | `/api/messages/conversations/:id/messages` | Private | Send a new message |
+| `POST` | `/api/messages/conversations/:id/interviews` | Recruiter | Schedule an interview inside chat |
+| `PATCH`| `/api/messages/interviews/:messageId/status` | Private | Update interview status (`Accepted`, etc.) |
+| `POST` | `/api/messages/upload` | Private | Upload chat attachment file |
 
-```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_strong_secret
-NODE_ENV=production
-CLIENT_URL=https://your-vercel-domain.vercel.app
-```
+### 📊 Recruiter Analytics (`/api/analytics`)
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/analytics/overview` | Recruiter | Fetch funnel metrics, volume trends & skill gaps |
 
-For Vercel preview links, you can also allow all Vercel subdomains:
+### 📰 News Feed (`/api/posts`)
+| Method | Endpoint | Access | Description |
+| :--- | :--- | :--- | :--- |
+| `GET` | `/api/posts` | Private | Retrieve feed posts (newest first) |
+| `POST` | `/api/posts` | Private | Create new feed post with optional image |
+| `PUT` | `/api/posts/:id/like` | Private | Toggle like on a post |
+| `POST` | `/api/posts/:id/comments` | Private | Add comment to post |
+| `POST` | `/api/posts/:id/repost` | Private | Repost an existing post with thoughts |
+| `DELETE`| `/api/posts/:id` | Private | Delete own post |
 
-```env
-CLIENT_URL=https://your-vercel-domain.vercel.app,https://*.vercel.app
-```
+---
 
-After deploy, copy your Render backend URL:
+## 🔌 Real-Time WebSocket Events
 
-```text
-https://your-backend-name.onrender.com
-```
+The application initializes Socket.io on top of the Express HTTP server:
 
-### 2. Deploy frontend to Vercel (Vite app)
+| Event Name | Direction | Payload | Description |
+| :--- | :--- | :--- | :--- |
+| `register` | Client ➔ Server | `userId: string` | Associates the socket connection with the authenticated user ID |
+| `disconnect` | Client ➔ Server | — | Removes socket from active connection pool |
+| `new_message` | Server ➔ Client | `MessageObject` | Emitted when a recipient receives a new chat message |
+| `interview_invite` | Server ➔ Client | `InterviewObject` | Emitted when an interview is scheduled within a conversation |
 
-Import the same GitHub repo in Vercel and set:
+---
 
-- Root Directory: `client`
-- Framework Preset: `Vite`
-- Build Command: `npm run build`
-- Output Directory: `dist`
+## 🚀 Deployment Guide
 
-Set Vercel environment variable:
+### Deploy Backend to Render
 
-```env
-VITE_API_BASE_URL=https://your-backend-name.onrender.com/api
-```
+1. Create a new **Web Service** on [Render](https://render.com/) and connect your GitHub repository.
+2. Configure settings:
+   - **Root Directory**: `server`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+3. Add Environment Variables:
+   - `NODE_ENV`: `production`
+   - `PORT`: `5000`
+   - `MONGO_URI`: *Your MongoDB connection string*
+   - `JWT_SECRET`: *A secure random secret*
+   - `CLIENT_URL`: `https://your-app.vercel.app` *(or `https://*.vercel.app` for preview links)*
+   - `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` *(optional)*
 
-### 3. Final production wiring
+---
 
-After Vercel gives your final domain:
+### Deploy Frontend to Vercel
 
-1. Update Render `CLIENT_URL` to your exact Vercel production URL.
-2. Redeploy Render service.
-3. In Vercel, keep `VITE_API_BASE_URL` pointed to the Render backend URL with `/api`.
+1. Import the repository into [Vercel](https://vercel.com/).
+2. Configure settings:
+   - **Root Directory**: `client`
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+3. Add Environment Variable:
+   - `VITE_API_BASE_URL`: `https://your-render-backend.onrender.com/api`
+4. Deploy!
+
+---
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for more details.
+
+---
+
+<div align="center">
+  Crafted with ❤️ by <a href="https://github.com/rutvikmanmode">Rutvik Manmode</a>
+</div>
